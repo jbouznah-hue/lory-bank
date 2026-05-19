@@ -1,0 +1,191 @@
+/* ============================================================
+   LORY EVENTS & CATERING — 3 DIRECTIONS VISUELLES
+   ============================================================ */
+
+/* ============================================================
+   DIRECTION A · INSTITUTIONNEL
+   Sobre, dossier de banque classique, sérieux, dense
+   Inspirations : Le Monde, rapports annuels, dossiers d'avocat
+   ============================================================ */
+[data-theme="institutionnel"] {
+  --bg: #f5f0e6;
+  --bg-card: #faf7f0;
+  --bg-band: #ede5d3;
+  --bg-nav: rgba(245, 240, 230, 0.92);
+  --ink: #1a2332;
+  --ink-soft: #5b6478;
+  --rule: #d4c5a8;
+  --accent: #8b6f3f;
+  --positive: #4a6741;
+  --negative: #8b3f3f;
+  --radius: 4px;
+
+  --font-display: 'EB Garamond', 'Frank Ruhl Libre', Georgia, serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-body-he: 'Frank Ruhl Libre', 'Heebo', serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  --display-weight: 500;
+  --display-tracking: 0;
+  --fs-body: 16px;
+}
+[data-theme="institutionnel"][dir="rtl"] {
+  --font-display: 'Frank Ruhl Libre', 'EB Garamond', serif;
+}
+[data-theme="institutionnel"] .nav-brand .name {
+  font-style: italic;
+}
+[data-theme="institutionnel"] .nav-brand .mark {
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 4px;
+  font-style: italic;
+}
+[data-theme="institutionnel"] .hero { background: linear-gradient(to bottom, var(--bg-card) 0%, var(--bg) 100%); }
+[data-theme="institutionnel"] .hero-title em { font-style: italic; font-weight: 500; }
+[data-theme="institutionnel"] .placeholder { background:
+    repeating-linear-gradient(0deg,
+      color-mix(in oklab, var(--ink) 4%, transparent),
+      color-mix(in oklab, var(--ink) 4%, transparent) 24px,
+      transparent 24px, transparent 25px),
+    var(--bg-card);
+}
+[data-theme="institutionnel"] .section-title::before {
+  content: '§ ';
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ============================================================
+   DIRECTION B · PREMIUM GASTRONOMIQUE
+   Charbon profond, ivoire, terre brûlée, or
+   Inspirations : brochure traiteur parisien luxe, Aman, menus haute gastro
+   ============================================================ */
+[data-theme="premium"] {
+  --bg: #1a1814;
+  --bg-card: #221f1a;
+  --bg-band: #14110d;
+  --bg-nav: rgba(26, 24, 20, 0.85);
+  --ink: #ebe3cf;
+  --ink-soft: #97907d;
+  --rule: #3a3530;
+  --accent: #c9a96e;
+  --positive: #8fb886;
+  --negative: #c97b6e;
+  --radius: 0;
+
+  --font-display: 'Cormorant Garamond', 'Heebo', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-body-he: 'Heebo', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 300;
+  --display-tracking: -0.02em;
+  --fs-body: 16px;
+}
+[data-theme="premium"] .nav-brand .mark {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+}
+[data-theme="premium"] .nav-brand .name {
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  font-size: 0.95rem;
+}
+[data-theme="premium"] .hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 60%),
+    var(--bg);
+}
+[data-theme="premium"] .hero-title { font-weight: 300; }
+[data-theme="premium"] .hero-title em { color: var(--accent); font-weight: 400; }
+[data-theme="premium"] .section-title { font-weight: 300; }
+[data-theme="premium"] .kpi-value { font-weight: 300; }
+[data-theme="premium"] .kpi-value .unit { font-family: var(--font-body); font-weight: 400; }
+[data-theme="premium"] .placeholder {
+  background:
+    radial-gradient(ellipse at center, color-mix(in oklab, var(--accent) 4%, transparent), transparent 60%),
+    repeating-linear-gradient(45deg, var(--bg-card), var(--bg-card) 1px, transparent 1px, transparent 30px),
+    var(--bg-card);
+}
+[data-theme="premium"] .btn-primary { background: var(--accent); color: var(--bg); }
+[data-theme="premium"] .btn-primary:hover { background: var(--ink); }
+[data-theme="premium"] .btn-outline { border-color: var(--accent); color: var(--accent); }
+[data-theme="premium"] .btn-outline:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+[data-theme="premium"] .doc-slot { border-style: solid; border-color: var(--rule); }
+[data-theme="premium"] .pipe-row { background: var(--bg-card); }
+[data-theme="premium"] .gantt-track { background: color-mix(in oklab, var(--accent) 8%, transparent); }
+[data-theme="premium"] .gantt-bar { background: var(--accent); color: var(--bg); }
+[data-theme="premium"] .control input[type="range"]::-webkit-slider-thumb { background: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+[data-theme="premium"] .tbl thead th { border-bottom-color: var(--accent); }
+[data-theme="premium"] .tbl tfoot td { border-top-color: var(--accent); }
+
+/* ============================================================
+   DIRECTION C · DATA-DRIVEN
+   Off-white, encre, bleu data, menthe
+   Inspirations : Stripe, Linear, Notion, pitch deck Series A
+   ============================================================ */
+[data-theme="data"] {
+  --bg: #fafaf7;
+  --bg-card: #ffffff;
+  --bg-band: #f0eee8;
+  --bg-nav: rgba(250, 250, 247, 0.92);
+  --ink: #0a0a0a;
+  --ink-soft: #6b6b6b;
+  --rule: #e3e1da;
+  --accent: #2c4cdb;
+  --positive: #1f9d6a;
+  --negative: #d97757;
+  --radius: 12px;
+
+  --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-body-he: 'Heebo', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 600;
+  --display-tracking: -0.035em;
+  --fs-body: 15px;
+}
+[data-theme="data"] .nav-brand .mark {
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+[data-theme="data"] .nav-brand .name {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+[data-theme="data"] .hero-title { font-weight: 700; letter-spacing: -0.04em; }
+[data-theme="data"] .hero-title em { color: var(--accent); font-style: normal; font-weight: 700; }
+[data-theme="data"] .section-title { font-weight: 700; letter-spacing: -0.035em; }
+[data-theme="data"] .kpi-value { font-weight: 700; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+[data-theme="data"] .card { box-shadow: 0 1px 0 var(--rule), 0 1px 2px rgba(0,0,0,0.02); }
+[data-theme="data"] .pipe-row { background: var(--bg-card); box-shadow: 0 1px 0 var(--rule); }
+[data-theme="data"] .btn-primary { background: var(--accent); color: white; border-radius: 8px; }
+[data-theme="data"] .btn-primary:hover { background: color-mix(in oklab, var(--accent) 80%, black); }
+[data-theme="data"] .btn-outline { border-color: var(--rule); color: var(--ink); border-radius: 8px; }
+[data-theme="data"] .btn-outline:hover { background: var(--ink); color: white; border-color: var(--ink); }
+[data-theme="data"] .btn-ghost { border-radius: 8px; }
+[data-theme="data"] .gantt-bar { background: var(--accent); color: white; }
+[data-theme="data"] .control input[type="range"]::-webkit-slider-thumb { background: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+[data-theme="data"] .control input[type="range"]::-moz-range-thumb { background: var(--accent); }
+[data-theme="data"] .placeholder {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--accent) 3%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, color-mix(in oklab, var(--positive) 4%, transparent), transparent 60%),
+    var(--bg-card);
+}
+[data-theme="data"] .section-num { color: var(--accent); font-weight: 600; }
+[data-theme="data"] .eyebrow { font-weight: 600; }
+[data-theme="data"] .hero-eyebrow { font-weight: 600; color: var(--accent); }
+[data-theme="data"] .tbl thead th { border-bottom-color: var(--ink); color: var(--ink); font-weight: 600; }
+[data-theme="data"] .img-placeholder { border-radius: var(--radius); }
+[data-theme="data"] .nav-lang button.on { background: var(--accent); }
+[data-theme="data"] .theme-radio button.on { background: var(--accent); border-color: var(--accent); }
+[data-theme="data"] .density-radio button.on { background: var(--accent); border-color: var(--accent); }

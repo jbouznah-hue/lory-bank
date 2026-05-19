@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" data-theme="institutionnel" data-density="default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LORY — שוק ומיצוב / Marche &amp; Positionnement</title>
+<meta name="description" content="LORY Events &amp; Catering — Analyse marche, positionnement concurrentiel, zone Givat Shaul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="img/logo-nav.png" alt="LORY" class="nav-logo">
+      <span class="name">LORY</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span class="he">סקירה</span><span class="fr">Synthese</span></a></li>
+      <li><a href="porteurs.html"><span class="he">היזמים</span><span class="fr">Porteurs</span></a></li>
+      <li><a href="concept.html"><span class="he">קונספט</span><span class="fr">Concept</span></a></li>
+      <li><a href="marche.html" class="active"><span class="he">שוק</span><span class="fr">Marche</span></a></li>
+      <li><a href="financement.html"><span class="he">מימון</span><span class="fr">Financement</span></a></li>
+      <li><a href="previsionnel.html"><span class="he">תחזית</span><span class="fr">Previsionnel</span></a></li>
+      <li><a href="calendrier.html"><span class="he">לו״ז</span><span class="fr">Calendrier</span></a></li>
+      <li><a href="annexes.html"><span class="he">נספחים</span><span class="fr">Annexes</span></a></li>
+    </ul>
+    <button class="btn btn-ghost no-print" onclick="exportPDF()">&#x2B07; PDF</button>
+    <div class="nav-lang">
+      <button data-lang="he" class="on">HE</button>
+      <button data-lang="fr">FR</button>
+    </div>
+  </div>
+</nav>
+
+<!-- MARCHE -->
+<section class="section reveal" id="marche">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <div class="section-num">03 / <span class="he">שוק ומיצוב</span><span class="fr">Marche &amp; positionnement</span></div>
+        <h2 class="section-title"><span class="he">נישה ריקה: גסטרונומיה צרפתית כשרה בירושלים.</span><span class="fr">Une niche vide&nbsp;: la gastronomie francaise casher a Jerusalem.</span></h2>
+      </div>
+      <p class="section-lede"><span class="he">גבעת שאול — אזור תעשייה, צמוד למתחם משרדים, אוכלוסיה דתית ומסורתית, חניה חופשית ביום שישי. השוק הכשר הפרמיום הצרפתי כמעט ריק.</span><span class="fr">Givat Shaul — zone industrielle adossee a des bureaux, demographie religieuse et traditionnelle, parking 100% libre le vendredi. Le casher premium francophone est une niche quasi vacante.</span></p>
+    </header>
+
+    <div class="split split-2">
+      <!-- TARGET PERSONAS -->
+      <div class="reveal">
+        <h3 class="subtitle"><span class="he">קהל יעד</span><span class="fr">Cibles</span></h3>
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th><span class="he">פרסונה</span><span class="fr">Persona</span></th>
+              <th><span class="he">תדירות</span><span class="fr">Frequence</span></th>
+              <th class="num"><span class="he">סל ממוצע</span><span class="fr">Panier moyen</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="he">משפחה דתית פרנקופונית · שבת</span><span class="fr">Famille religieuse francophone · Shabbat</span></td>
+              <td><span class="he">שבועי</span><span class="fr">Hebdomadaire</span></td>
+              <td class="num">350-700 ₪</td>
+            </tr>
+            <tr>
+              <td><span class="he">משרדים · צהריים</span><span class="fr">Bureau · midi</span></td>
+              <td><span class="he">2–3 / שבוע</span><span class="fr">2-3 / semaine</span></td>
+              <td class="num">55-80 ₪</td>
+            </tr>
+            <tr>
+              <td><span class="he">משפחה ישראלית מסורתית · חג</span><span class="fr">Famille israelienne traditionnelle · Hag</span></td>
+              <td><span class="he">8 / שנה</span><span class="fr">8 / an</span></td>
+              <td class="num">800-2000 ₪</td>
+            </tr>
+            <tr>
+              <td><span class="he">מארגן אירועים · חתונה</span><span class="fr">Organisateur · mariage</span></td>
+              <td><span class="he">חד-פעמי</span><span class="fr">Ponctuel</span></td>
+              <td class="num">15-40k ₪</td>
+            </tr>
+            <tr>
+              <td><span class="he">צה״ל · LeftOf</span><span class="fr">TSAHAL · LeftOf</span></td>
+              <td><span class="he">בכל חג</span><span class="fr">Chaque fete</span></td>
+              <td class="num">25-40k ₪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- COMPETITIVE POSITIONING -->
+      <div class="reveal">
+        <h3 class="subtitle"><span class="he">מיצוב מול תחרות</span><span class="fr">Positionnement vs concurrents</span></h3>
+        <div class="card" style="border-color: var(--accent);">
+          <div class="eyebrow"><span class="he">הבחנה מרכזית</span><span class="fr">Differenciateur</span></div>
+          <p style="margin: 0.5rem 0 0;"><span class="he"><strong>"גסטרונומיה תוניסאית-צרפתית כשרה"</strong> — מטבח שהציבור הישראלי לא נחשף אליו, ברמת ביצוע גבוהה, באריזה פרימיום.</span><span class="fr"><strong>&laquo; Gastronomie tunisienne francisee casher &raquo;</strong> — un registre culinaire inconnu du public israelien, execution haut niveau, packaging premium.</span></p>
+        </div>
+        <ul class="stack-sm" style="padding-inline-start: 1.1rem; margin-top: 1.5rem; font-size: 0.92rem; line-height: 1.55;">
+          <li><span class="he"><strong>Goldis (חנוכה)</strong> — תור של ארבעים דקות לסופגניה ב-50 ₪. אנחנו נתעלה על האריזה ועל המוצר.</span><span class="fr"><strong>Goldis (Hanouka)</strong> — queue de 40min pour une soufganya a 50 NIS. Surclassement par le packaging et le produit.</span></li>
+          <li><span class="he"><strong>קייטרינג כשר ירושלמי</strong> — לרוב גנרי, פסטי-קציצות. אנחנו נציע "צרפתי-תוניסאי".</span><span class="fr"><strong>Traiteur casher Jerusalem</strong> — souvent generique. Nous proposons le &laquo; franco-tunisien &raquo;.</span></li>
+          <li><span class="he"><strong>בוטיק מאן</strong> — אין מקבילה לחזית הראווה ברמה הזו בגבעת שאול.</span><span class="fr"><strong>Boutique manquante</strong> — pas d'equivalent en vitrine premium dans la zone.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- POURQUOI GIVAT SHAUL -->
+    <div class="card reveal" style="margin-top: 2.5rem;">
+      <div class="eyebrow"><span class="he">למה גבעת שאול?</span><span class="fr">Pourquoi Givat Shaul ?</span></div>
+      <div class="split split-3" style="margin-top: 1.5rem;">
+        <div>
+          <div class="kpi-value" style="font-size: 2rem;">100%</div>
+          <p class="muted" style="font-size:0.85rem; margin-top:0.4rem;"><span class="he">חניה חופשית ביום שישי — אזור תעשייה סגור.</span><span class="fr">Parking libre le vendredi — zone industrielle fermee.</span></p>
+        </div>
+        <div>
+          <div class="kpi-value" style="font-size: 2rem;">~80</div>
+          <p class="muted" style="font-size:0.85rem; margin-top:0.4rem;"><span class="he">משרדים בטווח של 500 מ׳ — שוק צהריים זמין.</span><span class="fr">Bureaux dans un rayon de 500 m — marche midi captable.</span></p>
+        </div>
+        <div>
+          <div class="kpi-value" style="font-size: 2rem;">0</div>
+          <p class="muted" style="font-size:0.85rem; margin-top:0.4rem;"><span class="he">מתחרים ישירים — נישה ריקה לחלוטין.</span><span class="fr">Concurrents directs — niche totalement vacante.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><h5>LORY Events &amp; Catering</h5><p><span class="he">קייטרינג כשר פרימיום · גבעת שאול, ירושלים</span><span class="fr">Traiteur casher premium · Givat Shaul, Jerusalem</span></p></div>
+      <div><h5><span class="he">תיק מימון</span><span class="fr">Dossier financement</span></h5><p><span class="he">מאי 2026 · גרסה 3.0</span><span class="fr">Mai 2026 · Version 3.0</span></p></div>
+      <div><h5><span class="he">סטטוס</span><span class="fr">Statut</span></h5><p><span class="he">תיק מסחרי חסוי</span><span class="fr">Document confidentiel</span></p></div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+<script src="js/shared.js"></script>
+<script>
+(function(){
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>

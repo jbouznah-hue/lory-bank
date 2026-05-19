@@ -1,0 +1,42 @@
+/* ============================================================
+   LORY EVENTS & CATERING — Charte Graphique
+   Single theme: LORY brand identity
+   ============================================================ */
+
+:root {
+  /* --- Palette --- */
+  --primary: #3B6C9E;
+  --accent: #B08A3E;
+  --bg: #EFE7DA;
+  --bg-card: #FAF8F3;
+  --bg-band: #E8DFD0;
+  --bg-nav: rgba(239, 231, 218, 0.95);
+  --ink: #2D3B4F;
+  --ink-soft: #5B6B7F;
+  --rule: #C8BBA5;
+  --positive: #6F7742;
+  --negative: #8B3F3F;
+
+  /* --- Radius --- */
+  --radius: 8px;
+
+  /* --- Typography --- */
+  --font-display: 'Playfair Display', 'Frank Ruhl Libre', Georgia, serif;
+  --font-body: 'Montserrat', 'Heebo', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* --- Font sizes --- */
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-xs: 0.75rem;
+
+  /* --- Display weight --- */
+  --display-weight: 400;
+  --display-tracking: -0.01em;
+}
+
+/* RTL font priority swap */
+[dir="rtl"] {
+  --font-display: 'Frank Ruhl Libre', 'Playfair Display', serif;
+  --font-body: 'Heebo', 'Montserrat', system-ui, sans-serif;
+}
