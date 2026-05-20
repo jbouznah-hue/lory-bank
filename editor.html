@@ -74,6 +74,10 @@
     .editable:hover { border-color: #C8BBA5; }
     .editable:focus { border-color: #3B6C9E; background: #f8f6f0; }
     .editable.modified { background: #fff8e1; border-color: #B08A3E; }
+    .editable-block {
+      width: 100%; resize: vertical; font-family: inherit; font-size: 0.85rem;
+      line-height: 1.5; min-height: 4em;
+    }
 
     .page-badge {
       display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
@@ -175,45 +179,76 @@ const PAGES = ['index', 'porteurs', 'concept', 'marche', 'financement', 'previsi
 let contentData = [];
 let importedData = null;
 
-// Extract all bilingual text pairs from HTML
+// Extract ALL bilingual text pairs — finds every span.he and its matching span.fr
 function extractContent(html, pageName) {
   var parser = new DOMParser();
   var doc = parser.parseFromString(html, 'text/html');
   var entries = [];
   var idx = 0;
+  var seenHe = new Set();
 
-  // Find all elements containing both .he and .fr spans
-  var allElements = doc.querySelectorAll('*');
-  allElements.forEach(function(el) {
-    var heSpan = null;
+  // Find ALL span.he in the document
+  var heSpans = doc.querySelectorAll('span.he');
+  heSpans.forEach(function(heSpan) {
+    if (seenHe.has(heSpan)) return;
+
+    // Find the matching span.fr — check siblings in same parent
     var frSpan = null;
+    var parent = heSpan.parentElement;
+    if (!parent) return;
 
-    // Direct children spans
-    for (var i = 0; i < el.children.length; i++) {
-      var child = el.children[i];
-      if (child.tagName === 'SPAN' && child.classList.contains('he')) heSpan = child;
-      if (child.tagName === 'SPAN' && child.classList.contains('fr')) frSpan = child;
-    }
-
-    if (heSpan && frSpan) {
-      var heText = heSpan.textContent.trim();
-      var frText = frSpan.textContent.trim();
-      if (heText || frText) {
-        // Get context from parent tag and class
-        var tag = el.tagName.toLowerCase();
-        var cls = el.className ? el.className.split(' ')[0] : '';
-        var context = tag + (cls ? '.' + cls : '');
-
-        entries.push({
-          id: pageName + '_' + idx,
-          page: pageName,
-          context: context,
-          he: heText,
-          fr: frText
-        });
-        idx++;
+    // Check all siblings for span.fr
+    for (var i = 0; i < parent.children.length; i++) {
+      var sib = parent.children[i];
+      if (sib !== heSpan && sib.tagName === 'SPAN' && sib.classList.contains('fr')) {
+        frSpan = sib;
+        break;
       }
     }
+
+    // If heSpan is nested deeper, go up one level
+    if (!frSpan && parent.parentElement) {
+      var gp = parent.parentElement;
+      for (var i = 0; i < gp.children.length; i++) {
+        var uncle = gp.children[i];
+        if (uncle.tagName === 'SPAN' && uncle.classList.contains('fr')) {
+          frSpan = uncle;
+          break;
+        }
+        if (uncle.querySelector) {
+          var nested = uncle.querySelector('span.fr');
+          if (nested && !seenHe.has(nested)) { frSpan = nested; break; }
+        }
+      }
+    }
+
+    seenHe.add(heSpan);
+
+    var hePlain = heSpan.textContent.trim();
+    var frPlain = frSpan ? frSpan.textContent.trim() : '';
+
+    if (!hePlain && !frPlain) return;
+
+    // Context: parent tag + first meaningful class
+    var tag = parent.tagName.toLowerCase();
+    var cls = '';
+    if (parent.className) {
+      cls = parent.className.split(' ').filter(function(c) {
+        return c && c !== 'he' && c !== 'fr' && c !== 'reveal' && c !== 'visible';
+      })[0] || '';
+    }
+    var context = tag + (cls ? '.' + cls : '');
+    var isLong = hePlain.length > 100 || frPlain.length > 100;
+
+    entries.push({
+      id: pageName + '_' + idx,
+      page: pageName,
+      context: context,
+      type: isLong ? 'block' : 'inline',
+      he: hePlain,
+      fr: frPlain
+    });
+    idx++;
   });
 
   return entries;
@@ -250,20 +285,25 @@ function renderTable() {
     html += '<tr data-id="' + item.id + '" data-page="' + item.page + '">';
     html += '<td class="col-page"><span class="page-badge">' + item.page + '</span></td>';
     html += '<td class="col-context">' + item.context + '</td>';
-    html += '<td class="col-he"><div class="editable" contenteditable="true" data-field="he" data-idx="' + i + '" dir="rtl">' + escapeHtml(item.he) + '</div></td>';
-    html += '<td class="col-fr"><div class="editable" contenteditable="true" data-field="fr" data-idx="' + i + '">' + escapeHtml(item.fr) + '</div></td>';
+    if (item.type === 'block') {
+      html += '<td class="col-he"><textarea class="editable editable-block" data-field="he" data-idx="' + i + '" dir="rtl" rows="3">' + escapeHtml(item.he) + '</textarea></td>';
+      html += '<td class="col-fr"><textarea class="editable editable-block" data-field="fr" data-idx="' + i + '" rows="3">' + escapeHtml(item.fr) + '</textarea></td>';
+    } else {
+      html += '<td class="col-he"><div class="editable" contenteditable="true" data-field="he" data-idx="' + i + '" dir="rtl">' + escapeHtml(item.he) + '</div></td>';
+      html += '<td class="col-fr"><div class="editable" contenteditable="true" data-field="fr" data-idx="' + i + '">' + escapeHtml(item.fr) + '</div></td>';
+    }
     html += '</tr>';
   });
 
   tbody.innerHTML = html;
   updateStats();
 
-  // Listen for edits
+  // Listen for edits — handle both contenteditable divs and textareas
   tbody.querySelectorAll('.editable').forEach(function(el) {
     el.addEventListener('input', function() {
       var idx = parseInt(el.dataset.idx);
       var field = el.dataset.field;
-      contentData[idx][field] = el.textContent.trim();
+      contentData[idx][field] = (el.tagName === 'TEXTAREA') ? el.value.trim() : el.textContent.trim();
       el.classList.add('modified');
     });
   });
