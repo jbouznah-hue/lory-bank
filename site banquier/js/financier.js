@@ -7,7 +7,7 @@
 /* CA mensuel en k₪ HT par axe. M1-M6 = setup (CA = 0). M7 (août 26) = ouverture. */
 const previs = {
   axes: {
-    shabbat:   { he: 'שבת — חנות + בוקסים', fr: 'Shabbat — boutique + box', tier: 'recurrent',
+    shabbat:   { he: 'שבת — חנות + חבילות', fr: 'Shabbat — boutique + box', tier: 'recurrent',
       vals: [0,0,0,0,0,0,  28,45,55,52,62,82,  88,92,92,92,92,98,  100,100,104,104,104,108] },
     hatan:     { he: 'שבת חתן', fr: 'Shabbat Hatan', tier: 'recurrent',
       vals: [0,0,0,0,0,0,   8,12,14,12,16,22,  24,24,24,24,24,26,   26,26,28,28,28,30] },
