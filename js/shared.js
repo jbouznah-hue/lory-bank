@@ -1,36 +1,10 @@
 /* ============================================================
    LORY EVENTS & CATERING — Shared utilities
-   Language toggle, helpers, scroll reveal, PDF export
+   Helpers, scroll reveal, PDF export
    ============================================================ */
 
 (function () {
   'use strict';
-
-  /* ---------- STATE ---------- */
-  var savedLang = null;
-  try { savedLang = localStorage.getItem('lory_lang'); } catch(e) {}
-  const state = { lang: savedLang || 'he' };
-  const html = document.documentElement;
-
-  /* ---------- LANGUAGE TOGGLE ---------- */
-  function setLang(lang) {
-    state.lang = lang;
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
-    try { localStorage.setItem('lory_lang', lang); } catch(e) {}
-    document.querySelectorAll('.nav-lang button').forEach(function (b) {
-      b.classList.toggle('on', b.dataset.lang === lang);
-    });
-    document.dispatchEvent(new CustomEvent('lory-lang', { detail: { lang: lang } }));
-  }
-
-  function bindLang() {
-    document.querySelectorAll('.nav-lang button').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        setLang(btn.dataset.lang);
-      });
-    });
-  }
 
   /* ---------- HELPERS ---------- */
 
@@ -44,12 +18,6 @@
     });
   }
 
-  /** Translation helper — returns HE or FR string based on current lang */
-  function tx(he, fr) {
-    var lang = document.documentElement.getAttribute('lang') || state.lang;
-    return lang === 'he' ? he : fr;
-  }
-
   /** getElementById shorthand */
   function el(id) {
     return document.getElementById(id);
@@ -59,11 +27,6 @@
   function safeSet(id, html) {
     var node = document.getElementById(id);
     if (node) node.innerHTML = html;
-  }
-
-  /** Get current language */
-  function getLang() {
-    return state.lang;
   }
 
   /* ---------- SCROLL REVEAL ---------- */
@@ -118,8 +81,6 @@
 
   /* ---------- INIT ---------- */
   document.addEventListener('DOMContentLoaded', function () {
-    bindLang();
-    setLang(state.lang);
     initReveal();
     highlightNav();
 
@@ -135,17 +96,13 @@
   /* ---------- PUBLIC API ---------- */
   window.LORY_UTILS = {
     fmtNum: fmtNum,
-    tx: tx,
     el: el,
     safeSet: safeSet,
-    getLang: getLang,
-    setLang: setLang,
     exportPDF: exportPDF
   };
 
   // Also expose at top level for convenience
   window.fmtNum = fmtNum;
-  window.tx = tx;
   window.el = el;
   window.safeSet = safeSet;
   window.exportPDF = exportPDF;

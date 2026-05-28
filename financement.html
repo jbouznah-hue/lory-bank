@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LORY — Financement</title>
+<title>LORY — מימון</title>
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,31 +17,23 @@
 <nav class="nav"><div class="nav-inner">
   <a class="nav-brand" href="index.html"><img src="img/logo-nav.png" alt="LORY" class="nav-logo"><span class="name">LORY</span></a>
   <ul class="nav-links">
-    <li><a href="index.html"><span class="he">סקירה</span><span class="fr">Synthese</span></a></li>
-    <li><a href="porteurs.html"><span class="he">היזמים</span><span class="fr">Porteurs</span></a></li>
-    <li><a href="concept.html"><span class="he">קונספט</span><span class="fr">Concept</span></a></li>
-    <li><a href="marche.html"><span class="he">שוק</span><span class="fr">Marche</span></a></li>
-    <li><a href="financement.html" class="active"><span class="he">מימון</span><span class="fr">Financement</span></a></li>
-    <li><a href="previsionnel.html"><span class="he">תחזית</span><span class="fr">Previsionnel</span></a></li>
-    <li><a href="calendrier.html"><span class="he">לו״ז</span><span class="fr">Calendrier</span></a></li>
-    <li><a href="annexes.html"><span class="he">נספחים</span><span class="fr">Annexes</span></a></li>
+    <li><a href="index.html">סקירה</a></li>
+    <li><a href="porteurs.html">היזמים</a></li>
+    <li><a href="concept.html">קונספט</a></li>
+    <li><a href="marche.html">שוק</a></li>
+    <li><a href="financement.html" class="active">מימון</a></li>
+    <li><a href="previsionnel.html">תחזית</a></li>
+    <li><a href="annexes.html">נספחים</a></li>
   </ul>
   <button class="btn btn-ghost no-print" onclick="exportPDF()">&#x2B07; PDF</button>
-  <div class="nav-lang"><button data-lang="he" class="on">HE</button><button data-lang="fr">FR</button></div>
 </div></nav>
 
 <!-- HERO -->
 <header class="hero page-hero">
   <div class="wrap">
-    <div class="hero-eyebrow"><span class="he">תכנית מימון · תיק בנקאי</span><span class="fr">Plan de financement &middot; Dossier bancaire</span></div>
-    <h1 class="hero-title">
-      <span class="he">מימון, סימולציה<br>ו<em>כושר החזר</em>.</span>
-      <span class="fr">Financement, simulation<br>et <em>capacite de remboursement</em>.</span>
-    </h1>
-    <p class="hero-lede">
-      <span class="he">כל הנתונים מבוססים על הצעות מחיר אמיתיות. השתמשו בפקדים האינטראקטיביים כדי לבחון תרחישים שונים.</span>
-      <span class="fr">Toutes les donnees reposent sur des devis reels. Utilisez les controles interactifs pour explorer differents scenarios.</span>
-    </p>
+    <div class="hero-eyebrow">תכנית מימון · תיק בנקאי</div>
+    <h1 class="hero-title">מימון, סימולציה<br>ו<em>כושר החזר</em>.</h1>
+    <p class="hero-lede">כל הנתונים מבוססים על הצעות מחיר אמיתיות ועל נתוני הייעוץ הפיננסי. הנתונים קפואים ומוצגים כפי שנמסרו לבנק.</p>
   </div>
 </header>
 
@@ -52,143 +44,69 @@
   <div class="wrap">
     <header class="section-head">
       <div>
-        <div class="section-num">01 / <span class="he">תכנית מימון</span><span class="fr">Plan de financement</span></div>
-        <h2 class="section-title"><span class="he">צרכים מול משאבים.</span><span class="fr">Emplois et ressources.</span></h2>
+        <div class="section-num">01 / תכנית מימון</div>
+        <h2 class="section-title">צרכים מול משאבים.</h2>
       </div>
-      <p class="section-lede"><span class="he">השקעה מאוזנת בין עבודות, ציוד מטבח, רכב משלוחים מקורר וליווי מקצועי. הון עצמי משפחתי מספק את הראיון של היזמים, הלוואה בנקאית משלימה לבסיס ההשקעה.</span><span class="fr">Investissement equilibre entre travaux, equipement cuisine, vehicule frigorifique et accompagnement. L'apport familial demontre l'engagement des porteurs ; le pret bancaire complete le socle.</span></p>
+      <p class="section-lede">השקעה מאוזנת בין עבודות התאמה, ציוד מטבח, רכב קירור וליווי מקצועי. הון עצמי משפחתי מספק את מחויבות היזמים; הלוואה בנקאית משלימה את יתרת ההשקעה.</p>
     </header>
 
     <div class="split split-2">
       <!-- BESOINS -->
       <div>
-        <h3 class="subtitle"><span class="he">צרכים — שימושים</span><span class="fr">Besoins — Emplois</span></h3>
+        <h3 class="subtitle">צרכים — שימושים</h3>
         <table class="tbl">
           <thead>
-            <tr><th><span class="he">פריט</span><span class="fr">Poste</span></th><th class="num"><span class="he">סכום (₪)</span><span class="fr">Montant (NIS)</span></th></tr>
+            <tr><th>פריט</th><th class="num">סכום (₪)</th></tr>
           </thead>
-          <tbody id="besoins-tbody">
-            <!-- Populated by JS from LORY.computed.byCategory -->
+          <tbody>
+            <tr><td>עבודות התאמה</td><td class="num">178,000</td></tr>
+            <tr><td>ציוד מטבח</td><td class="num">117,900</td></tr>
+            <tr><td>רכב קירור</td><td class="num">50,000</td></tr>
+            <tr><td>שירותים ושונות</td><td class="num">96,500</td></tr>
           </tbody>
           <tfoot>
-            <tr><td><span class="he">סה״כ צרכים</span><span class="fr">Total des emplois</span></td><td class="num" id="besoins-total">0</td></tr>
+            <tr><td><strong>סה״כ צרכים</strong></td><td class="num"><strong>442,400</strong></td></tr>
           </tfoot>
         </table>
-        <p class="muted" style="font-size:0.78rem; margin-top:1rem;"><span class="he">* מבוסס על הצעות מחיר אמיתיות: Lyor Zerbib #1018 (17/05/2026) + Gastroline PQ26-3517 (18/05/2026).</span><span class="fr">* Base sur devis reels : Lyor Zerbib #1018 (17/05/2026) + Gastroline PQ26-3517 (18/05/2026).</span></p>
+        <p class="muted" style="font-size:0.78rem; margin-top:1rem;">* מבוסס על הצעות מחיר אמיתיות: Lyor Zerbib #1018 (17/05/2026) + Gastroline PQ26-3517 (18/05/2026).</p>
       </div>
 
       <!-- RESSOURCES -->
       <div>
-        <h3 class="subtitle"><span class="he">משאבים — מקורות</span><span class="fr">Ressources — Origines</span></h3>
+        <h3 class="subtitle">משאבים — מקורות</h3>
         <table class="tbl">
           <thead>
-            <tr><th><span class="he">מקור</span><span class="fr">Source</span></th><th class="num"><span class="he">סכום (₪)</span><span class="fr">Montant (NIS)</span></th><th class="num">%</th></tr>
+            <tr><th>מקור</th><th class="num">סכום (₪)</th><th class="num">%</th></tr>
           </thead>
           <tbody>
-            <tr><td><span class="he">הון עצמי משפחתי</span><span class="fr">Apport personnel (familial)</span></td><td class="num" id="apport-amount-display">193 000</td><td class="num" id="apport-pct-display">18,5%</td></tr>
-            <tr><td><strong><span class="he">הלוואה בנקאית — מבוקשת</span><span class="fr">Pret bancaire — demande</span></strong></td><td class="num" id="loan-amount-display">850 000</td><td class="num" id="loan-pct-display">81,5%</td></tr>
+            <tr><td>הון עצמי משפחתי</td><td class="num">193,000</td><td class="num">43.6%</td></tr>
+            <tr><td><strong>הלוואה בנקאית</strong></td><td class="num"><strong>249,400</strong></td><td class="num"><strong>56.4%</strong></td></tr>
           </tbody>
           <tfoot>
-            <tr><td><span class="he">סה״כ משאבים</span><span class="fr">Total des ressources</span></td><td class="num" id="total-resources-display">1 043 000</td><td class="num">100%</td></tr>
+            <tr><td><strong>סה״כ</strong></td><td class="num"><strong>442,400</strong></td><td class="num"><strong>100%</strong></td></tr>
           </tfoot>
         </table>
+
+        <div style="margin-top: 1.5rem; padding: 1.25rem; background: var(--bg-band); border-radius: var(--radius);">
+          <div class="kpi-label" style="margin-bottom: 0.4rem;">מע״מ 18%</div>
+          <div class="kpi-value" style="font-size: 1.4rem;">79,632 <span class="unit">₪</span></div>
+          <div class="kpi-label" style="margin-top: 1rem; margin-bottom: 0.4rem;">סה״כ כולל מע״מ</div>
+          <div class="kpi-value" style="font-size: 1.4rem;">522,032 <span class="unit">₪</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     SECTION 2 : INTERACTIVE CONTROLS
+     SECTION 2 : SIMULATION PRET (FROZEN)
      ============================================================ -->
 <section class="section" style="background: var(--bg-band);">
   <div class="wrap">
     <header class="section-head">
       <div>
-        <div class="section-num">02 / <span class="he">סימולטור הלוואה</span><span class="fr">Simulateur de pret</span></div>
-        <h2 class="section-title"><span class="he">התאימו את הפרמטרים.</span><span class="fr">Ajustez les parametres.</span></h2>
-      </div>
-    </header>
-
-    <div class="card">
-      <div class="stack-md">
-        <div class="control">
-          <div class="control-label"><span><span class="he">הון עצמי</span><span class="fr">Apport</span></span><span class="val" id="apport-slider-val">193k &#x20AA;</span></div>
-          <input type="range" id="apport-slider" min="100" max="500" step="10" value="193">
-        </div>
-        <div class="control">
-          <div class="control-label"><span><span class="he">ריבית שנתית</span><span class="fr">Taux annuel</span></span><span class="val"><span id="loan-rate">6,5</span>%</span></div>
-          <input type="range" id="rate-slider" min="40" max="100" step="1" value="65">
-        </div>
-        <div class="control">
-          <div class="control-label"><span><span class="he">משך (שנים)</span><span class="fr">Duree (annees)</span></span><span class="val"><span id="loan-years">6</span></span></div>
-          <input type="range" id="years-slider" min="3" max="10" step="1" value="6">
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);">
-          <div>
-            <div class="kpi-label"><span class="he">החזר חודשי</span><span class="fr">Mensualite</span></div>
-            <div class="kpi-value" style="font-size: 1.8rem;" id="monthly-payment">14 250<span class="unit">&#x20AA;</span></div>
-          </div>
-          <div>
-            <div class="kpi-label"><span class="he">סה״כ ריביות</span><span class="fr">Cout interets</span></div>
-            <div class="kpi-value" style="font-size: 1.8rem;" id="total-interest">180,0<span class="unit">k</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 3 : POINT MORT
-     ============================================================ -->
-<section class="section">
-  <div class="wrap">
-    <header class="section-head">
-      <div>
-        <div class="section-num">03 / <span class="he">נקודת איזון</span><span class="fr">Point mort</span></div>
-        <h2 class="section-title"><span class="he">כמה לקוחות לשבת?</span><span class="fr">Combien de couverts par Shabbat ?</span></h2>
-      </div>
-    </header>
-
-    <div class="card">
-      <div class="split split-2">
-        <div class="stack-md">
-          <div class="control">
-            <div class="control-label"><span><span class="he">סל ממוצע / לקוח</span><span class="fr">Panier moyen / couvert</span></span><span class="val"><span id="panier-val">100</span> &#x20AA;</span></div>
-            <input type="range" id="panier-slider" min="60" max="200" value="100" step="5">
-          </div>
-          <div class="control">
-            <div class="control-label"><span><span class="he">שיעור חומרי גלם</span><span class="fr">% matieres premieres</span></span><span class="val"><span id="material-val">30</span>%</span></div>
-            <input type="range" id="material-slider" min="20" max="45" value="30" step="1">
-          </div>
-          <div class="control">
-            <div class="control-label"><span><span class="he">הוצאות קבועות חודשיות</span><span class="fr">Charges fixes mensuelles</span></span><span class="val"><span id="fixed-val">50</span>k &#x20AA;</span></div>
-            <input type="range" id="fixed-slider" min="35" max="80" value="50" step="1">
-          </div>
-        </div>
-        <div style="background: var(--bg-band); padding: 2rem; border-radius: var(--radius);">
-          <div class="kpi-label"><span class="he">הכנסה חודשית לנקודת איזון</span><span class="fr">CA mensuel pour point mort</span></div>
-          <div class="kpi-value" id="be-ca" style="margin-top:0.5rem;">71,4<span class="unit">k &#x20AA;</span></div>
-          <div class="kpi-label" style="margin-top: 1.5rem;"><span class="he">לקוחות / חודש</span><span class="fr">Couverts / mois</span></div>
-          <div class="kpi-value" id="be-couverts" style="font-size: 1.8rem; margin-top:0.3rem;">714</div>
-          <div class="kpi-label" style="margin-top: 1.5rem;"><span class="he">לקוחות / שבת</span><span class="fr">Couverts / Shabbat</span></div>
-          <div class="kpi-value" id="be-shabbat" style="font-size: 1.8rem; margin-top:0.3rem; color: var(--accent);">~178</div>
-          <p class="muted" style="font-size:0.82rem; margin-top: 1rem; line-height: 1.5;"><span class="he">היום, ללא חנות: ~120 לקוחות/שבוע. הפער של ~60 הוא הזרימה הצפויה מחזית הראווה החדשה.</span><span class="fr">Aujourd'hui sans boutique : ~120/semaine. L'ecart de ~60 est le flux entrant attendu via la vitrine.</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 4 : CAPACITE DE REMBOURSEMENT
-     ============================================================ -->
-<section class="section" id="capacite" style="background: var(--bg-band);">
-  <div class="wrap">
-    <header class="section-head">
-      <div>
-        <div class="section-num">04 / <span class="he">כושר החזר</span><span class="fr">Capacite de remboursement</span></div>
-        <h2 class="section-title"><span class="he">תקציב המשפחה לאחר ההלוואה.</span><span class="fr">Budget du menage apres emprunt.</span></h2>
+        <div class="section-num">02 / סימולציית הלוואה</div>
+        <h2 class="section-title">פרטי ההלוואה המבוקשת.</h2>
       </div>
     </header>
 
@@ -196,63 +114,85 @@
       <table class="tbl">
         <tbody>
           <tr>
-            <td><span class="he">הכנסות חודשיות של הזוג</span><span class="fr">Revenus mensuels du couple</span></td>
-            <td class="num editable-household" data-field="revenus" id="debt-revenus">18 000</td>
+            <td>סכום הלוואה</td>
+            <td class="num"><strong>249,400 ₪</strong></td>
           </tr>
           <tr>
-            <td><span class="he">הוצאות קיימות (ללא ההלוואה)</span><span class="fr">Charges existantes (hors pret)</span></td>
-            <td class="num editable-household" data-field="charges" id="debt-charges">8 000</td>
+            <td>ריבית שנתית</td>
+            <td class="num">6.5%</td>
           </tr>
           <tr>
-            <td><span class="he">החזר חודשי הלוואה</span><span class="fr">Mensualite du pret</span></td>
-            <td class="num" id="debt-mensualite">14 250</td>
+            <td>תקופה</td>
+            <td class="num">72 חודשים (6 שנים)</td>
           </tr>
           <tr style="border-top: 2px solid var(--ink);">
-            <td><strong><span class="he">סה״כ הוצאות לאחר הלוואה</span><span class="fr">Total charges apres pret</span></strong></td>
-            <td class="num"><strong id="debt-total-charges">22 250</strong></td>
+            <td><strong>החזר חודשי</strong></td>
+            <td class="num"><strong>4,192 ₪</strong></td>
           </tr>
           <tr>
-            <td><span class="he">שיעור מינוף (חובות / הכנסות)</span><span class="fr">Taux d'endettement</span></td>
-            <td class="num"><span id="debt-ratio" class="debt-ratio-value ratio-red">123,6%</span></td>
+            <td>סה״כ החזר</td>
+            <td class="num">301,853 ₪</td>
           </tr>
           <tr>
-            <td><span class="he">יתרה לחיים</span><span class="fr">Reste a vivre</span></td>
-            <td class="num" id="debt-reste">-4 250</td>
-          </tr>
-          <tr>
-            <td><span class="he">יתרה לחיים לנפש (4 נפשות)</span><span class="fr">Reste a vivre par personne</span></td>
-            <td class="num" id="debt-reste-pp">-607</td>
+            <td>עלות האשראי</td>
+            <td class="num">52,453 ₪</td>
           </tr>
         </tbody>
       </table>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);">
+        <div>
+          <div class="kpi-label">החזר חודשי</div>
+          <div class="kpi-value" style="font-size: 1.8rem;">4,192 <span class="unit">₪</span></div>
+        </div>
+        <div>
+          <div class="kpi-label">סה״כ החזר</div>
+          <div class="kpi-value" style="font-size: 1.8rem;">301,853 <span class="unit">₪</span></div>
+        </div>
+        <div>
+          <div class="kpi-label">עלות האשראי</div>
+          <div class="kpi-value" style="font-size: 1.8rem;">52,453 <span class="unit">₪</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     SECTION 5 : GARANTIES
+     SECTION 3 : GARANTIES
      ============================================================ -->
-<section class="section">
+<section class="section" id="garanties">
   <div class="wrap">
     <header class="section-head">
       <div>
-        <div class="section-num">05 / <span class="he">בטחונות</span><span class="fr">Garanties</span></div>
-        <h2 class="section-title"><span class="he">ביטחונות מוצעים לבנק.</span><span class="fr">Garanties proposees a la banque.</span></h2>
+        <div class="section-num">03 / בטחונות</div>
+        <h2 class="section-title">ביטחונות מוצעים לבנק.</h2>
       </div>
     </header>
 
     <div class="card">
-      <div class="cards-grid" id="guarantees-grid">
-        <!-- Populated by JS -->
-      </div>
+      <table class="tbl">
+        <thead>
+          <tr><th>ערבות</th><th class="num">סכום (₪)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ערבות אישית הדדית (טומי + אדינה)</td><td class="num">הדדית</td></tr>
+          <tr><td>ערבות משפחתית (סבא רופא)</td><td class="num">150,000</td></tr>
+          <tr><td>שעבוד ציוד</td><td class="num">117,000</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><strong>סה״כ בטחונות</strong></td><td class="num"><strong>267,000</strong></td></tr>
+        </tfoot>
+      </table>
+
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);">
         <div>
-          <div class="kpi-label"><span class="he">סה״כ ביטחונות</span><span class="fr">Total cautions</span></div>
-          <div class="kpi-value" style="font-size: 1.8rem;" id="total-cautions">581 500</div>
+          <div class="kpi-label">סה״כ בטחונות</div>
+          <div class="kpi-value" style="font-size: 1.8rem;">267,000 <span class="unit">₪</span></div>
         </div>
         <div>
-          <div class="kpi-label"><span class="he">יחס ביטחונות / הלוואה</span><span class="fr">Ratio garanties / pret</span></div>
-          <div class="kpi-value" style="font-size: 1.8rem;" id="ratio-garanties">68%</div>
+          <div class="kpi-label">יחס בטחונות / הלוואה</div>
+          <div class="kpi-value" style="font-size: 1.8rem;">107%</div>
         </div>
       </div>
     </div>
@@ -260,21 +200,127 @@
 </section>
 
 <!-- ============================================================
-     SECTION 6 : REGISTRE DES DEPENSES
+     SECTION 4 : DETAIL INVESTISSEMENT
      ============================================================ -->
-<section class="section" id="depenses" style="background: var(--bg-band);">
+<section class="section" id="detail" style="background: var(--bg-band);">
   <div class="wrap">
     <header class="section-head">
       <div>
-        <div class="section-num">06 / <span class="he">פנקס הוצאות</span><span class="fr">Registre des depenses</span></div>
-        <h2 class="section-title"><span class="he">כל שורה ניתנת לעריכה.</span><span class="fr">Chaque ligne est editable.</span></h2>
+        <div class="section-num">04 / פירוט ההשקעה</div>
+        <h2 class="section-title">פירוט מלא של עלויות ההשקעה.</h2>
       </div>
-      <p class="section-lede"><span class="he">לחצו על סכום כדי לערוך. לחצו על &times; כדי למחוק. כל שינוי מעדכן את התכנית כולה באופן אוטומטי.</span><span class="fr">Cliquez sur un montant pour editer. Cliquez sur &times; pour supprimer. Chaque modification met a jour tout le plan automatiquement.</span></p>
+      <p class="section-lede">כל פריט מבוסס על הצעת מחיר רשמית. הנתונים מוצגים בדיוק כפי שנמסרו על ידי הספקים.</p>
     </header>
 
-    <div class="card" id="expense-table">
-      <!-- Populated by JS -->
+    <!-- עבודות התאמה -->
+    <div style="margin-bottom: 2.5rem;">
+      <h3 class="subtitle">עבודות התאמה — Lyor Zerbib #1018</h3>
+      <div class="card">
+        <table class="tbl">
+          <thead>
+            <tr><th>פריט</th><th class="num">סכום (₪)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>אינסטלציה</td><td class="num">20,000</td></tr>
+            <tr><td>חשמל</td><td class="num">22,000</td></tr>
+            <tr><td>איטום</td><td class="num">11,000</td></tr>
+            <tr><td>מחיצות גבס</td><td class="num">35,000</td></tr>
+            <tr><td>הגבהת רצפה</td><td class="num">30,000</td></tr>
+            <tr><td>ריצוף והנחה</td><td class="num">30,000</td></tr>
+            <tr><td>חומרי ריצוף (457 מ״ר)</td><td class="num">30,000</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>סה״כ</strong></td><td class="num"><strong>178,000</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
+
+    <!-- ציוד מטבח -->
+    <div style="margin-bottom: 2.5rem;">
+      <h3 class="subtitle">ציוד מטבח — Gastroline PQ26-3517</h3>
+      <div class="card">
+        <table class="tbl">
+          <thead>
+            <tr><th>פריט</th><th class="num">סכום (₪)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ויטרינה מקוררת</td><td class="num">15,900</td></tr>
+            <tr><td>שולחן נירוסטה + כיור 180</td><td class="num">3,300</td></tr>
+            <tr><td>בלאסט צ׳ילר</td><td class="num">8,900</td></tr>
+            <tr><td>תנור קונבקציה</td><td class="num">15,000</td></tr>
+            <tr><td>סטנד קומבי</td><td class="num">2,500</td></tr>
+            <tr><td>גריל גז</td><td class="num">7,000</td></tr>
+            <tr><td>כיריים</td><td class="num">5,900</td></tr>
+            <tr><td>מטגנת גז</td><td class="num">5,000</td></tr>
+            <tr><td>שולחן נירוסטה + כיור 260</td><td class="num">4,400</td></tr>
+            <tr><td>4 מקררים 685 ליטר</td><td class="num">22,000</td></tr>
+            <tr><td>עמדת כיור כפולה</td><td class="num">5,400</td></tr>
+            <tr><td>מדיח כלים תעשייתי</td><td class="num">12,900</td></tr>
+            <tr><td>שולחנות מדיח</td><td class="num">5,800</td></tr>
+            <tr><td>3 שולחנות נירוסטה + כיור 160</td><td class="num">10,200</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>סה״כ</strong></td><td class="num"><strong>117,900</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- רכב -->
+    <div style="margin-bottom: 2.5rem;">
+      <h3 class="subtitle">רכב</h3>
+      <div class="card">
+        <table class="tbl">
+          <tbody>
+            <tr><td>רכב קירור</td><td class="num"><strong>50,000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- שירותים ושונות -->
+    <div style="margin-bottom: 2.5rem;">
+      <h3 class="subtitle">שירותים ושונות</h3>
+      <div class="card">
+        <table class="tbl">
+          <thead>
+            <tr><th>פריט</th><th class="num">סכום (₪)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>מהנדס רישיון עסק</td><td class="num">25,000</td></tr>
+            <tr><td>שיווק ORRTYL — 12 חודשים</td><td class="num">35,000</td></tr>
+            <tr><td>עיצוב חנות</td><td class="num">6,500</td></tr>
+            <tr><td>הון חוזר</td><td class="num">30,000</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>סה״כ</strong></td><td class="num"><strong>96,500</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- TOTAL GENERAL -->
+    <div class="card" style="border: 2px solid var(--ink);">
+      <table class="tbl">
+        <tbody>
+          <tr>
+            <td><strong>סה״כ כולל (ללא מע״מ)</strong></td>
+            <td class="num"><strong>442,400 ₪</strong></td>
+          </tr>
+          <tr>
+            <td>מע״מ 18%</td>
+            <td class="num">79,632 ₪</td>
+          </tr>
+          <tr style="border-top: 2px solid var(--ink);">
+            <td><strong>סה״כ כולל מע״מ</strong></td>
+            <td class="num"><strong>522,032 ₪</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted" style="font-size:0.78rem; margin-top:1.5rem;">* מבוסס על הצעות מחיר אמיתיות: Lyor Zerbib #1018 (17/05/2026) + Gastroline PQ26-3517 (18/05/2026)</p>
   </div>
 </section>
 
@@ -282,16 +328,13 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer-grid">
-      <div><h5>LORY Events &amp; Catering</h5><p><span class="he">קייטרינג כשר פרימיום · גבעת שאול, ירושלים</span><span class="fr">Traiteur casher premium &middot; Givat Shaul, Jerusalem</span></p></div>
-      <div><h5><span class="he">תיק מימון</span><span class="fr">Dossier financement</span></h5><p><span class="he">מאי 2026 · גרסה 3.0</span><span class="fr">Mai 2026 &middot; Version 3.0</span></p></div>
-      <div><h5><span class="he">בנק יעד</span><span class="fr">Banque cible</span></h5><p>Mizrahi Tefahot</p></div>
-      <div><h5><span class="he">סטטוס</span><span class="fr">Statut</span></h5><p><span class="he">תיק מסחרי חסוי</span><span class="fr">Dossier commercial confidentiel</span></p></div>
+      <div><h5>LORY Events &amp; Catering</h5><p>קייטרינג כשר פרימיום · גבעת שאול, ירושלים</p></div>
+      <div><h5>תיק מימון</h5><p>מאי 2026 · גרסה 3.0</p></div>
+      <div><h5>סטטוס</h5><p>תיק מסחרי חסוי</p></div>
     </div>
   </div>
 </footer>
 
 <script src="js/shared.js"></script>
-<script src="js/data.js"></script>
-<script src="js/engine.js"></script>
 </body>
 </html>

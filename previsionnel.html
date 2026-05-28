@@ -3,13 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LORY — Previsionnel</title>
+<title>LORY — תחזית פיננסית</title>
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Heebo:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/themes.css">
+<style>
+  .previs-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl-previs { border-collapse: collapse; font-size: 0.78rem; min-width: 1800px; width: 100%; }
+  .tbl-previs th, .tbl-previs td { padding: 0.35rem 0.55rem; border: 1px solid var(--border, #e5e5e5); white-space: nowrap; }
+  .tbl-previs thead th { background: var(--ink, #1a1a1a); color: #fff; font-weight: 600; text-align: center; font-size: 0.72rem; }
+  .tbl-previs thead th.col-label { text-align: right; min-width: 200px; position: sticky; right: 0; background: var(--ink, #1a1a1a); z-index: 2; }
+  .tbl-previs .col-label { text-align: right; position: sticky; right: 0; background: #fff; z-index: 1; font-weight: 500; min-width: 200px; }
+  .tbl-previs .num { text-align: center; font-variant-numeric: tabular-nums; font-family: var(--font-mono, monospace); font-size: 0.72rem; }
+  .tbl-previs .num.zero { color: var(--ink-soft, #999); }
+  .tbl-previs .num.pos { color: var(--positive, #22884a); font-weight: 600; }
+  .tbl-previs .num.neg { color: var(--negative, #c0392b); font-weight: 600; }
+  .tbl-previs .num.strong { font-weight: 700; }
+  .tbl-previs .row-section { background: color-mix(in oklab, var(--accent, #8b6c3e) 12%, transparent); }
+  .tbl-previs .row-section td { font-weight: 700; font-size: 0.8rem; padding: 0.45rem 0.55rem; }
+  .tbl-previs .row-section .col-label { background: color-mix(in oklab, var(--accent, #8b6c3e) 12%, transparent); }
+  .tbl-previs .row-subtotal { background: color-mix(in oklab, var(--accent, #8b6c3e) 8%, transparent); }
+  .tbl-previs .row-subtotal td { font-weight: 700; }
+  .tbl-previs .row-subtotal .col-label { background: color-mix(in oklab, var(--accent, #8b6c3e) 8%, transparent); }
+  .tbl-previs .row-total-charges { background: color-mix(in oklab, var(--negative, #c0392b) 10%, transparent); }
+  .tbl-previs .row-total-charges td { font-weight: 700; }
+  .tbl-previs .row-total-charges .col-label { background: color-mix(in oklab, var(--negative, #c0392b) 10%, transparent); }
+  .tbl-previs .row-solde { background: color-mix(in oklab, var(--positive, #22884a) 10%, transparent); }
+  .tbl-previs .row-solde td { font-weight: 700; font-size: 0.8rem; }
+  .tbl-previs .row-solde .col-label { background: color-mix(in oklab, var(--positive, #22884a) 10%, transparent); }
+  .tbl-previs .col-y1, .tbl-previs .col-y2, .tbl-previs .col-total { background: color-mix(in oklab, var(--ink, #1a1a1a) 6%, transparent); font-weight: 700; }
+  .tbl-previs thead .col-y1, .tbl-previs thead .col-y2, .tbl-previs thead .col-total { background: color-mix(in oklab, var(--ink, #1a1a1a) 85%, transparent); }
+  .tbl-previs .row-sep td { padding: 0; height: 6px; background: var(--border, #e5e5e5); }
+  .tbl-previs tr:hover td:not(.col-label) { background: color-mix(in oklab, var(--accent, #8b6c3e) 6%, transparent); }
+  .invest-note { background: color-mix(in oklab, var(--accent, #8b6c3e) 8%, transparent); border-right: 3px solid var(--accent, #8b6c3e); padding: 0.9rem 1.2rem; border-radius: 6px; margin-top: 1.2rem; font-size: 0.85rem; }
+  .invest-note strong { display: block; margin-bottom: 0.35rem; font-size: 0.92rem; }
+</style>
 </head>
 <body>
 
@@ -17,31 +48,23 @@
 <nav class="nav"><div class="nav-inner">
   <a class="nav-brand" href="index.html"><img src="img/logo-nav.png" alt="LORY" class="nav-logo"><span class="name">LORY</span></a>
   <ul class="nav-links">
-    <li><a href="index.html"><span class="he">סקירה</span><span class="fr">Synthese</span></a></li>
-    <li><a href="porteurs.html"><span class="he">היזמים</span><span class="fr">Porteurs</span></a></li>
-    <li><a href="concept.html"><span class="he">קונספט</span><span class="fr">Concept</span></a></li>
-    <li><a href="marche.html"><span class="he">שוק</span><span class="fr">Marche</span></a></li>
-    <li><a href="financement.html"><span class="he">מימון</span><span class="fr">Financement</span></a></li>
-    <li><a href="previsionnel.html" class="active"><span class="he">תחזית</span><span class="fr">Previsionnel</span></a></li>
-    <li><a href="calendrier.html"><span class="he">לו״ז</span><span class="fr">Calendrier</span></a></li>
-    <li><a href="annexes.html"><span class="he">נספחים</span><span class="fr">Annexes</span></a></li>
+    <li><a href="index.html">סקירה</a></li>
+    <li><a href="porteurs.html">היזמים</a></li>
+    <li><a href="concept.html">קונספט</a></li>
+    <li><a href="marche.html">שוק</a></li>
+    <li><a href="financement.html">מימון</a></li>
+    <li><a href="previsionnel.html" class="active">תחזית</a></li>
+    <li><a href="annexes.html">נספחים</a></li>
   </ul>
-  <button class="btn btn-ghost no-print" onclick="exportPDF()">&#x2B07; PDF</button>
-  <div class="nav-lang"><button data-lang="he" class="on">HE</button><button data-lang="fr">FR</button></div>
+  <button class="btn btn-ghost no-print" onclick="window.print()">&#x2B07; PDF</button>
 </div></nav>
 
 <!-- HERO -->
 <header class="hero page-hero">
   <div class="wrap">
-    <div class="hero-eyebrow"><span class="he">תחזית תזרים מזומנים</span><span class="fr">Previsionnel de tresorerie</span></div>
-    <h1 class="hero-title">
-      <span class="he">24 חודשים,<br>חודש אחר <em>חודש</em>.</span>
-      <span class="fr">24 mois,<br>mois par <em>mois</em>.</span>
-    </h1>
-    <p class="hero-lede">
-      <span class="he">תחזית מפורטת של תקבולים לפי ציר, תשלומים לפי סעיף, יתרה חודשית ותזרים מצטבר. רגישות עונתית בולטת לפסח, תשרי וחנוכה.</span>
-      <span class="fr">Previsionnel detaille : encaissements par axe, decaissements par poste, solde mensuel et tresorerie cumulee. Saisonnalite Pessah, Tishrei, Hanouka.</span>
-    </p>
+    <div class="hero-eyebrow">תחזית תזרים מזומנים</div>
+    <h1 class="hero-title">24 חודשים,<br>חודש אחר <em>חודש</em>.</h1>
+    <p class="hero-lede">תחזית מפורטת של תקבולים לפי ציר, תשלומים לפי סעיף, יתרה חודשית ותזרים מצטבר. רגישות עונתית בולטת לפסח, תשרי וחנוכה.</p>
   </div>
 </header>
 
@@ -50,63 +73,647 @@
   <div class="wrap">
     <div class="kpi-grid">
       <div class="kpi">
-        <div class="kpi-label"><span class="he">חודש ראשון חיובי</span><span class="fr">Premier mois positif</span></div>
-        <div class="kpi-value" id="previs-kpi-pointmort">M9</div>
+        <div class="kpi-label">מחזור שנה 1</div>
+        <div class="kpi-value">828,000 <span class="unit">₪</span></div>
       </div>
       <div class="kpi">
-        <div class="kpi-label"><span class="he">תזרים מצטבר מינימלי</span><span class="fr">Tresorerie cumulee minimale</span></div>
-        <div class="kpi-value" id="previs-kpi-min">&mdash;</div>
+        <div class="kpi-label">מחזור שנה 2</div>
+        <div class="kpi-value">2,410,000 <span class="unit">₪</span></div>
       </div>
       <div class="kpi">
-        <div class="kpi-label"><span class="he">תזרים מצטבר סוף M24</span><span class="fr">Tresorerie cumulee fin M24</span></div>
-        <div class="kpi-value" id="previs-kpi-fin">&mdash;</div>
+        <div class="kpi-label">סה״כ 24 חודשים</div>
+        <div class="kpi-value">3,238,000 <span class="unit">₪</span></div>
       </div>
       <div class="kpi">
-        <div class="kpi-label"><span class="he">מחזור שנה ראשונה</span><span class="fr">CA annee 1</span></div>
-        <div class="kpi-value" id="previs-kpi-cay1">&mdash;</div>
+        <div class="kpi-label">חודש ראשון חיובי (יתרה)</div>
+        <div class="kpi-value">M9</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CHART -->
-<section class="section">
-  <div class="wrap">
-    <header class="section-head">
-      <div>
-        <div class="section-num">01 / <span class="he">גרף תזרים</span><span class="fr">Graphique cashflow</span></div>
-        <h2 class="section-title"><span class="he">תזרים מצטבר ויתרה חודשית.</span><span class="fr">Cashflow cumule et solde mensuel.</span></h2>
-      </div>
-    </header>
-
-    <div class="card" style="padding:1.5rem;">
-      <svg id="cashflow-chart" class="chart" viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet"></svg>
-      <div style="display:flex; gap:2rem; margin-top:1rem; font-size:0.78rem; color:var(--ink-soft);">
-        <div><span style="display:inline-block;width:16px;height:3px;background:var(--positive);vertical-align:middle;margin-inline-end:0.4rem;"></span><span class="he">הכנסות חודשיות</span><span class="fr">Revenus mensuels</span></div>
-        <div><span style="display:inline-block;width:16px;height:3px;background:var(--negative);vertical-align:middle;margin-inline-end:0.4rem;"></span><span class="he">תזרים מצטבר</span><span class="fr">Tresorerie cumulee</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TABLE -->
+<!-- TABLE SECTION -->
 <section class="section" style="background:var(--bg-band);">
   <div class="wrap">
     <header class="section-head">
       <div>
-        <div class="section-num">02 / <span class="he">טבלת תחזית</span><span class="fr">Tableau previsionnel</span></div>
-        <h2 class="section-title"><span class="he">כל חודש, כל סעיף.</span><span class="fr">Chaque mois, chaque poste.</span></h2>
+        <div class="section-num">01 / טבלת תחזית מפורטת</div>
+        <h2 class="section-title">כל חודש, כל סעיף.</h2>
+        <p style="color:var(--ink-soft);font-size:0.88rem;margin-top:0.5rem;">כל הסכומים בשקלים חדשים (ILS). גללו ימינה לצפייה בכל 24 החודשים.</p>
       </div>
     </header>
 
-    <div id="previs-table">
-      <!-- Generated by JS -->
-    </div>
+    <div class="card" style="padding:1.5rem;">
+      <div class="previs-scroll">
+        <table class="tbl-previs">
+          <thead>
+            <tr>
+              <th class="col-label">סעיף</th>
+              <th>יוני 26<br><small>M1</small></th>
+              <th>יולי 26<br><small>M2</small></th>
+              <th>אוגוסט 26<br><small>M3</small></th>
+              <th>ספטמבר 26<br><small>M4</small></th>
+              <th>אוקטובר 26<br><small>M5</small></th>
+              <th>נובמבר 26<br><small>M6</small></th>
+              <th>דצמבר 26<br><small>M7</small></th>
+              <th>ינואר 27<br><small>M8</small></th>
+              <th>פברואר 27<br><small>M9</small></th>
+              <th>מרץ 27<br><small>M10</small></th>
+              <th>אפריל 27<br><small>M11</small></th>
+              <th>מאי 27<br><small>M12</small></th>
+              <th class="col-y1">שנה 1</th>
+              <th>יוני 27<br><small>M13</small></th>
+              <th>יולי 27<br><small>M14</small></th>
+              <th>אוגוסט 27<br><small>M15</small></th>
+              <th>ספטמבר 27<br><small>M16</small></th>
+              <th>אוקטובר 27<br><small>M17</small></th>
+              <th>נובמבר 27<br><small>M18</small></th>
+              <th>דצמבר 27<br><small>M19</small></th>
+              <th>ינואר 28<br><small>M20</small></th>
+              <th>פברואר 28<br><small>M21</small></th>
+              <th>מרץ 28<br><small>M22</small></th>
+              <th>אפריל 28<br><small>M23</small></th>
+              <th>מאי 28<br><small>M24</small></th>
+              <th class="col-y2">שנה 2</th>
+              <th class="col-total">סה״כ 24 חד׳</th>
+            </tr>
+          </thead>
+          <tbody>
 
-    <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.5rem;font-size:0.78rem;color:var(--ink-soft);">
-      <div><span style="display:inline-block;width:12px;height:12px;background:color-mix(in oklab, var(--accent) 14%, transparent);vertical-align:middle;margin-inline-end:0.4rem;"></span><span class="he">פתיחה</span><span class="fr">Ouverture</span></div>
-      <div><span style="display:inline-block;width:12px;height:12px;background:color-mix(in oklab, var(--positive) 14%, transparent);vertical-align:middle;margin-inline-end:0.4rem;"></span><span class="he">חגים</span><span class="fr">Fetes</span></div>
-      <div><span class="he">כל הסכומים בשקלים חדשים (ILS).</span><span class="fr">Tous les montants en ILS.</span></div>
+            <!-- ===== REVENUE SECTION ===== -->
+            <tr class="row-section">
+              <td class="col-label" colspan="27">הכנסות לפי ציר</td>
+            </tr>
+
+            <!-- שבת חנות+חבילות -->
+            <tr>
+              <td class="col-label">שבת — חנות + חבילות</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">18,000</td>
+              <td class="num">25,000</td>
+              <td class="num">32,000</td>
+              <td class="num">40,000</td>
+              <td class="num">48,000</td>
+              <td class="num">55,000</td>
+              <td class="num">62,000</td>
+              <td class="num">72,000</td>
+              <td class="num col-y1 strong">352,000</td>
+              <td class="num">78,000</td>
+              <td class="num">82,000</td>
+              <td class="num">85,000</td>
+              <td class="num">88,000</td>
+              <td class="num">90,000</td>
+              <td class="num">95,000</td>
+              <td class="num">98,000</td>
+              <td class="num">100,000</td>
+              <td class="num">102,000</td>
+              <td class="num">105,000</td>
+              <td class="num">106,000</td>
+              <td class="num">108,000</td>
+              <td class="num col-y2 strong">1,137,000</td>
+              <td class="num col-total strong">1,489,000</td>
+            </tr>
+
+            <!-- שבת חתן -->
+            <tr>
+              <td class="col-label">שבת חתן</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">8,000</td>
+              <td class="num">10,000</td>
+              <td class="num">12,000</td>
+              <td class="num">15,000</td>
+              <td class="num">18,000</td>
+              <td class="num">20,000</td>
+              <td class="num">22,000</td>
+              <td class="num col-y1 strong">105,000</td>
+              <td class="num">22,000</td>
+              <td class="num">24,000</td>
+              <td class="num">25,000</td>
+              <td class="num">25,000</td>
+              <td class="num">26,000</td>
+              <td class="num">27,000</td>
+              <td class="num">27,000</td>
+              <td class="num">28,000</td>
+              <td class="num">28,000</td>
+              <td class="num">29,000</td>
+              <td class="num">30,000</td>
+              <td class="num">30,000</td>
+              <td class="num col-y2 strong">321,000</td>
+              <td class="num col-total strong">426,000</td>
+            </tr>
+
+            <!-- ארוחות צהריים -->
+            <tr>
+              <td class="col-label">ארוחות צהריים — משרדים</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">10,000</td>
+              <td class="num">15,000</td>
+              <td class="num">18,000</td>
+              <td class="num">22,000</td>
+              <td class="num">25,000</td>
+              <td class="num">28,000</td>
+              <td class="num">30,000</td>
+              <td class="num">32,000</td>
+              <td class="num col-y1 strong">180,000</td>
+              <td class="num">33,000</td>
+              <td class="num">34,000</td>
+              <td class="num">35,000</td>
+              <td class="num">36,000</td>
+              <td class="num">37,000</td>
+              <td class="num">38,000</td>
+              <td class="num">38,000</td>
+              <td class="num">39,000</td>
+              <td class="num">40,000</td>
+              <td class="num">41,000</td>
+              <td class="num">41,000</td>
+              <td class="num">42,000</td>
+              <td class="num col-y2 strong">454,000</td>
+              <td class="num col-total strong">634,000</td>
+            </tr>
+
+            <!-- חגים -->
+            <tr>
+              <td class="col-label">חגים</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">85,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num col-y1 strong">85,000</td>
+              <td class="num">45,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">30,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">90,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num col-y2 strong">165,000</td>
+              <td class="num col-total strong">250,000</td>
+            </tr>
+
+            <!-- לב טוב צהל -->
+            <tr>
+              <td class="col-label">לב טוב — צה״ל</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">18,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num col-y1 strong">18,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">18,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">18,000</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num col-y2 strong">36,000</td>
+              <td class="num col-total strong">54,000</td>
+            </tr>
+
+            <!-- אירועים -->
+            <tr>
+              <td class="col-label">אירועים</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">5,000</td>
+              <td class="num">8,000</td>
+              <td class="num">10,000</td>
+              <td class="num">12,000</td>
+              <td class="num">15,000</td>
+              <td class="num">18,000</td>
+              <td class="num">20,000</td>
+              <td class="num col-y1 strong">88,000</td>
+              <td class="num">20,000</td>
+              <td class="num">22,000</td>
+              <td class="num">22,000</td>
+              <td class="num">24,000</td>
+              <td class="num">24,000</td>
+              <td class="num">25,000</td>
+              <td class="num">25,000</td>
+              <td class="num">26,000</td>
+              <td class="num">26,000</td>
+              <td class="num">27,000</td>
+              <td class="num">28,000</td>
+              <td class="num">28,000</td>
+              <td class="num col-y2 strong">297,000</td>
+              <td class="num col-total strong">385,000</td>
+            </tr>
+
+            <!-- סה״כ הכנסות -->
+            <tr class="row-subtotal">
+              <td class="col-label">סה״כ הכנסות</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">28,000</td>
+              <td class="num">53,000</td>
+              <td class="num">68,000</td>
+              <td class="num">84,000</td>
+              <td class="num">100,000</td>
+              <td class="num">219,000</td>
+              <td class="num">130,000</td>
+              <td class="num">146,000</td>
+              <td class="num col-y1 strong pos">828,000</td>
+              <td class="num">198,000</td>
+              <td class="num">162,000</td>
+              <td class="num">167,000</td>
+              <td class="num">203,000</td>
+              <td class="num">195,000</td>
+              <td class="num">185,000</td>
+              <td class="num">188,000</td>
+              <td class="num">193,000</td>
+              <td class="num">196,000</td>
+              <td class="num">310,000</td>
+              <td class="num">205,000</td>
+              <td class="num">208,000</td>
+              <td class="num col-y2 strong pos">2,410,000</td>
+              <td class="num col-total strong pos">3,238,000</td>
+            </tr>
+
+            <!-- SEPARATOR -->
+            <tr class="row-sep"><td colspan="27"></td></tr>
+
+            <!-- ===== CHARGES SECTION ===== -->
+            <tr class="row-section">
+              <td class="col-label" colspan="27">הוצאות לפי סעיף (חודשיות)</td>
+            </tr>
+
+            <!-- חומרי גלם 30% -->
+            <tr>
+              <td class="col-label">חומרי גלם — 30% מהמחזור</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">8,400</td>
+              <td class="num">15,900</td>
+              <td class="num">20,400</td>
+              <td class="num">25,200</td>
+              <td class="num">30,000</td>
+              <td class="num">65,700</td>
+              <td class="num">39,000</td>
+              <td class="num">43,800</td>
+              <td class="num col-y1 strong">248,400</td>
+              <td class="num">59,400</td>
+              <td class="num">48,600</td>
+              <td class="num">50,100</td>
+              <td class="num">60,900</td>
+              <td class="num">58,500</td>
+              <td class="num">55,500</td>
+              <td class="num">56,400</td>
+              <td class="num">57,900</td>
+              <td class="num">58,800</td>
+              <td class="num">93,000</td>
+              <td class="num">61,500</td>
+              <td class="num">62,400</td>
+              <td class="num col-y2 strong">723,000</td>
+              <td class="num col-total strong">971,400</td>
+            </tr>
+
+            <!-- משכורות -->
+            <tr>
+              <td class="col-label">משכורות</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">8,000</td>
+              <td class="num">15,000</td>
+              <td class="num">18,000</td>
+              <td class="num">22,000</td>
+              <td class="num">25,000</td>
+              <td class="num">28,000</td>
+              <td class="num">30,000</td>
+              <td class="num">32,000</td>
+              <td class="num">33,000</td>
+              <td class="num col-y1 strong">211,000</td>
+              <td class="num">33,000</td>
+              <td class="num">34,000</td>
+              <td class="num">34,000</td>
+              <td class="num">35,000</td>
+              <td class="num">35,000</td>
+              <td class="num">36,000</td>
+              <td class="num">36,000</td>
+              <td class="num">36,000</td>
+              <td class="num">37,000</td>
+              <td class="num">37,000</td>
+              <td class="num">38,000</td>
+              <td class="num">38,000</td>
+              <td class="num col-y2 strong">429,000</td>
+              <td class="num col-total strong">640,000</td>
+            </tr>
+
+            <!-- שכירות -->
+            <tr>
+              <td class="col-label">שכירות</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num col-y1 strong">180,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num">15,000</td>
+              <td class="num col-y2 strong">180,000</td>
+              <td class="num col-total strong">360,000</td>
+            </tr>
+
+            <!-- ארנונה+מים+חשמל -->
+            <tr>
+              <td class="col-label">ארנונה + מים + חשמל</td>
+              <td class="num">1,000</td>
+              <td class="num">1,000</td>
+              <td class="num">1,000</td>
+              <td class="num">1,500</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num col-y1 strong">25,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num col-y2 strong">40,000</td>
+              <td class="num col-total strong">65,000</td>
+            </tr>
+
+            <!-- שיווק -->
+            <tr>
+              <td class="col-label">שיווק</td>
+              <td class="num">5,000</td>
+              <td class="num">5,000</td>
+              <td class="num">5,000</td>
+              <td class="num">5,000</td>
+              <td class="num">5,000</td>
+              <td class="num">5,000</td>
+              <td class="num">4,000</td>
+              <td class="num">4,000</td>
+              <td class="num">4,000</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num">3,500</td>
+              <td class="num col-y1 strong">52,500</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">3,000</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num">2,500</td>
+              <td class="num col-y2 strong">32,000</td>
+              <td class="num col-total strong">84,500</td>
+            </tr>
+
+            <!-- רואה חשבון -->
+            <tr>
+              <td class="col-label">רואה חשבון</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num col-y1 strong">18,000</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num col-y2 strong">18,000</td>
+              <td class="num col-total strong">36,000</td>
+            </tr>
+
+            <!-- כשרות -->
+            <tr>
+              <td class="col-label">כשרות</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">1,500</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num col-y1 strong">14,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num">2,000</td>
+              <td class="num col-y2 strong">24,000</td>
+              <td class="num col-total strong">38,000</td>
+            </tr>
+
+            <!-- החזר הלוואה -->
+            <tr>
+              <td class="col-label">החזר הלוואה</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num zero">—</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num col-y1 strong">33,539</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num">4,192</td>
+              <td class="num col-y2 strong">50,309</td>
+              <td class="num col-total strong">83,848</td>
+            </tr>
+
+            <!-- סה״כ הוצאות -->
+            <tr class="row-total-charges">
+              <td class="col-label">סה״כ הוצאות חודשיות</td>
+              <td class="num">22,500</td>
+              <td class="num">22,500</td>
+              <td class="num">22,500</td>
+              <td class="num">31,000</td>
+              <td class="num">52,592</td>
+              <td class="num">63,092</td>
+              <td class="num">71,092</td>
+              <td class="num">78,892</td>
+              <td class="num">87,192</td>
+              <td class="num">124,892</td>
+              <td class="num">100,192</td>
+              <td class="num">106,992</td>
+              <td class="num col-y1 strong neg">782,439</td>
+              <td class="num">121,092</td>
+              <td class="num">111,292</td>
+              <td class="num">112,792</td>
+              <td class="num">124,592</td>
+              <td class="num">122,192</td>
+              <td class="num">120,192</td>
+              <td class="num">121,092</td>
+              <td class="num">122,592</td>
+              <td class="num">124,492</td>
+              <td class="num">158,692</td>
+              <td class="num">128,192</td>
+              <td class="num">129,092</td>
+              <td class="num col-y2 strong neg">1,496,309</td>
+              <td class="num col-total strong neg">2,278,748</td>
+            </tr>
+
+            <!-- SEPARATOR -->
+            <tr class="row-sep"><td colspan="27"></td></tr>
+
+            <!-- ===== SOLDE MENSUEL ===== -->
+            <tr class="row-solde">
+              <td class="col-label">יתרה חודשית (הכנסות פחות הוצאות)</td>
+              <td class="num neg">−22,500</td>
+              <td class="num neg">−22,500</td>
+              <td class="num neg">−22,500</td>
+              <td class="num neg">−31,000</td>
+              <td class="num neg">−24,592</td>
+              <td class="num neg">−10,092</td>
+              <td class="num neg">−3,092</td>
+              <td class="num pos">5,108</td>
+              <td class="num pos">12,808</td>
+              <td class="num pos">94,108</td>
+              <td class="num pos">29,808</td>
+              <td class="num pos">39,008</td>
+              <td class="num col-y1 strong pos">45,561</td>
+              <td class="num pos">76,908</td>
+              <td class="num pos">50,708</td>
+              <td class="num pos">54,208</td>
+              <td class="num pos">78,408</td>
+              <td class="num pos">72,808</td>
+              <td class="num pos">64,808</td>
+              <td class="num pos">66,908</td>
+              <td class="num pos">70,408</td>
+              <td class="num pos">71,508</td>
+              <td class="num pos">151,308</td>
+              <td class="num pos">76,808</td>
+              <td class="num pos">78,908</td>
+              <td class="num col-y2 strong pos">913,691</td>
+              <td class="num col-total strong pos">959,252</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Investment note -->
+      <div class="invest-note">
+        <strong>השקעות חד-פעמיות (אינן כלולות בטבלת ההוצאות החודשיות)</strong>
+        השקעות אלה מממונות מהון עצמי ומהלוואה בנקאית ומוצגות בדף המימון בנפרד: עבודות שיפוץ ועיצוב — 120,000 ₪ · ציוד מטבח ומקרר — 80,000 ₪ · רכב קירור — 60,000 ₪ · פיקדון שכירות — 45,000 ₪ · הוצאות פתיחה שונות — 20,000 ₪ · <strong>סה״כ השקעה התחלתית: 325,000 ₪</strong>
+      </div>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.5rem;font-size:0.78rem;color:var(--ink-soft);">
+        <div>כל הסכומים בשקלים חדשים (ILS).</div>
+        <div>שנה 1 = M1–M12 (יוני 2026 – מאי 2027) · שנה 2 = M13–M24 (יוני 2027 – מאי 2028)</div>
+      </div>
     </div>
   </div>
 </section>
@@ -115,26 +722,27 @@
 <section class="section">
   <div class="wrap">
     <div class="card">
-      <div class="eyebrow"><span class="he">הערות מתודולוגיות</span><span class="fr">Notes methodologiques</span></div>
+      <div class="eyebrow">הערות מתודולוגיות</div>
       <div class="split split-2" style="margin-top: 1rem;">
         <div>
-          <h4 style="font-family: var(--font-display); font-weight: 500; margin: 0 0 0.5rem;"><span class="he">הנחות הכנסות</span><span class="fr">Hypotheses encaissements</span></h4>
+          <h4 style="font-family: var(--font-display); font-weight: 500; margin: 0 0 0.5rem;">הנחות הכנסות</h4>
           <ul style="margin:0;padding-inline-start:1.1rem;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);">
-            <li><span class="he">שבת — חנות + חבילות: התרחבות מ-180 לקוחות/שבוע ב-M7 ל-300+ ב-M12.</span><span class="fr">Shabbat boutique + box : montee de 180 couverts/sem au M7 vers 300+ au M12.</span></li>
-            <li><span class="he">צהריים — משרדים: יעד 40-60 מנות/יום ב-M12.</span><span class="fr">Midi bureaux : cible 40-60 repas/jour au M12.</span></li>
-            <li><span class="he">חגים: 3 שיאים שנתיים — תשרי, פסח וקיץ.</span><span class="fr">Fetes : 3 pics annuels — Tishrei, Hanouka, Pessah.</span></li>
-            <li><span class="he">לב טוב: חוזה חיילים פעיל — 1500 ארוחות/חג.</span><span class="fr">Lev Tov : contrat soldats actif — 1500 repas/fete.</span></li>
-            <li><span class="he">אירועים: 1-2 בחודש, צמיחה אורגנית.</span><span class="fr">Evenements : 1-2/mois, croissance organique.</span></li>
+            <li>שבת — חנות + חבילות: התרחבות מ-180 לקוחות/שבוע ב-M7 ל-300+ ב-M12.</li>
+            <li>צהריים — משרדים: יעד 40-60 מנות/יום ב-M12.</li>
+            <li>חגים: 3 שיאים שנתיים — תשרי, חנוכה ופסח.</li>
+            <li>לב טוב: חוזה חיילים פעיל — 1,500 ארוחות/חג.</li>
+            <li>אירועים: 1-2 בחודש, צמיחה אורגנית.</li>
           </ul>
         </div>
         <div>
-          <h4 style="font-family: var(--font-display); font-weight: 500; margin: 0 0 0.5rem;"><span class="he">הנחות תזרים הוצאות</span><span class="fr">Hypotheses decaissements</span></h4>
+          <h4 style="font-family: var(--font-display); font-weight: 500; margin: 0 0 0.5rem;">הנחות הוצאות</h4>
           <ul style="margin:0;padding-inline-start:1.1rem;font-size:0.88rem;line-height:1.6;color:var(--ink-soft);">
-            <li><span class="he">חומרי גלם: 30% מהמחזור.</span><span class="fr">Matieres premieres : 30% du CA.</span></li>
-            <li><span class="he">שכר: Tommy (חצי משכורת מ-M4), עובדים מ-M8. עד 38k ₪/חודש.</span><span class="fr">Salaires : Tommy (demi-paie des M4), 2 employes a partir M8. Plafond 38k NIS.</span></li>
-            <li><span class="he">שכר דירה: 15k ₪/חודש.</span><span class="fr">Loyer : 15k NIS/mois.</span></li>
-            <li><span class="he">ארנונה + מים + חשמל: עד 3.5k ₪/חודש.</span><span class="fr">Arnona + eau + elec : jusqu'a 3.5k NIS/mois.</span></li>
-            <li><span class="he">מע״מ: 18%.</span><span class="fr">TVA : 18%.</span></li>
+            <li>חומרי גלם: 30% מהמחזור.</li>
+            <li>שכר: Tommy (חצי משכורת מ-M4), עובדים מ-M8. עד 38,000 ₪/חודש.</li>
+            <li>שכר דירה: 15,000 ₪/חודש קבועים.</li>
+            <li>ארנונה + מים + חשמל: עד 3,500 ₪/חודש.</li>
+            <li>החזר הלוואה: 4,192 ₪/חודש מ-M5 עד M24 (20 תשלומים).</li>
+            <li>מע״מ: 18% (לא כלול בטבלה — הכנסות והוצאות מוצגות ללא מע״מ).</li>
           </ul>
         </div>
       </div>
@@ -146,283 +754,13 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer-grid">
-      <div><h5>LORY Events &amp; Catering</h5><p><span class="he">קייטרינג כשר פרימיום · גבעת שאול, ירושלים</span><span class="fr">Traiteur casher premium &middot; Givat Shaul, Jerusalem</span></p></div>
-      <div><h5><span class="he">תיק מימון</span><span class="fr">Dossier financement</span></h5><p><span class="he">מאי 2026 · גרסה 3.0</span><span class="fr">Mai 2026 &middot; Version 3.0</span></p></div>
-      <div><h5><span class="he">בנק יעד</span><span class="fr">Banque cible</span></h5><p>Mizrahi Tefahot</p></div>
-      <div><h5><span class="he">סטטוס</span><span class="fr">Statut</span></h5><p><span class="he">תיק מסחרי חסוי</span><span class="fr">Dossier commercial confidentiel</span></p></div>
+      <div><h5>LORY Events &amp; Catering</h5><p>קייטרינג כשר פרימיום · גבעת שאול, ירושלים</p></div>
+      <div><h5>תיק מימון</h5><p>מאי 2026 · גרסה 3.0</p></div>
+      <div><h5>סטטוס</h5><p>תיק מסחרי חסוי</p></div>
     </div>
   </div>
 </footer>
 
 <script src="js/shared.js"></script>
-<script src="js/data.js"></script>
-<script>
-/* ============================================================
-   PREVISIONNEL PAGE — builds table + chart from LORY data
-   ============================================================ */
-(function () {
-  'use strict';
-
-  function tx(he, fr) {
-    var lang = (typeof lorState !== 'undefined' && lorState) ? lorState.lang : 'he';
-    return lang === 'he' ? he : fr;
-  }
-
-  function el(id) { return document.getElementById(id); }
-  function safeSet(id, html) { var e = el(id); if (e) e.innerHTML = html; }
-
-  /* ---------- KPIs ---------- */
-  function updateKPIs() {
-    var c = window.LORY.computed;
-    if (!c || !c.cumulTreasury) return;
-
-    // Point mort
-    var pm = c.pointMort;
-    safeSet('previs-kpi-pointmort', pm >= 0 ? 'M' + (pm + 1) : '\u2014');
-
-    // Tresorerie min
-    safeSet('previs-kpi-min', fmtNum(Math.round(c.tresorerieMin / 1000)) + '<span class="unit">k \u20AA</span>');
-
-    // Tresorerie fin M24
-    safeSet('previs-kpi-fin', fmtNum(Math.round(c.tresorerieFin / 1000)) + '<span class="unit">k \u20AA</span>');
-
-    // CA Y1
-    safeSet('previs-kpi-cay1', fmtNum(Math.round(c.caYear1 / 1000)) + '<span class="unit">k \u20AA</span>');
-  }
-
-  /* ---------- TABLE ---------- */
-  function renderTable() {
-    var root = el('previs-table');
-    if (!root) return;
-    var L = window.LORY;
-    var c = L.computed;
-    if (!c || !c.monthlyRevenue) return;
-
-    var months = L.months;
-    var lang = (typeof lorState !== 'undefined' && lorState) ? lorState.lang : 'he';
-
-    var h = '<div class="previs-scroll"><table class="previs">';
-    h += '<thead><tr>';
-    h += '<th class="sticky-col">' + tx('שורה', 'Ligne') + '</th>';
-    for (var m = 0; m < 24; m++) {
-      var mo = months[m];
-      var tagClass = '';
-      if (mo.tags && mo.tags.length) tagClass = ' tag-' + mo.tags[0];
-      h += '<th class="col-month' + tagClass + '"><div class="mlbl">M' + (m + 1) + '</div><div class="mdate">' + (lang === 'he' ? mo.he : mo.fr) + '</div></th>';
-    }
-    h += '<th class="col-total">' + tx('סה״כ', 'Total') + '</th>';
-    h += '</tr></thead><tbody>';
-
-    // --- ENCAISSEMENTS ---
-    h += '<tr class="section-row"><td colspan="26">' + tx('הכנסות (לפי ציר)', 'Encaissements (par axe)') + '</td></tr>';
-    var axes = L.revenueAxes;
-    for (var key in axes) {
-      if (!axes.hasOwnProperty(key)) continue;
-      var axe = axes[key];
-      h += '<tr><td class="sticky-col">' + tx(axe.label_he, axe.label_fr) + '</td>';
-      var tot = 0;
-      for (var m = 0; m < 24; m++) {
-        var v = axe.monthly[m] || 0;
-        tot += v;
-        h += '<td class="num' + (v === 0 ? ' zero' : '') + '">' + (v ? fmtNum(v) : '\u2014') + '</td>';
-      }
-      h += '<td class="num strong">' + fmtNum(tot) + '</td></tr>';
-    }
-
-    // CA HT
-    h += '<tr class="sub-total"><td class="sticky-col">' + tx('סה״כ הכנסות', 'Total CA HT') + '</td>';
-    var totCA = 0;
-    for (var m = 0; m < 24; m++) {
-      var v = c.monthlyRevenue[m];
-      totCA += v;
-      h += '<td class="num">' + (v ? fmtNum(v) : '\u2014') + '</td>';
-    }
-    h += '<td class="num strong">' + fmtNum(totCA) + '</td></tr>';
-
-    // --- DECAISSEMENTS ---
-    h += '<tr class="section-row neg"><td colspan="26">' + tx('הוצאות (לפי סעיף)', 'Decaissements (par poste)') + '</td></tr>';
-
-    // Matieres
-    h += '<tr><td class="sticky-col">' + tx('חומרי גלם (30%)', 'Matieres (30%)') + '</td>';
-    var totMat = 0;
-    for (var m = 0; m < 24; m++) {
-      var v = c.monthlyMatieres[m];
-      totMat += v;
-      h += '<td class="num' + (v === 0 ? ' zero' : '') + '">' + (v ? fmtNum(v) : '\u2014') + '</td>';
-    }
-    h += '<td class="num strong">' + fmtNum(totMat) + '</td></tr>';
-
-    // Fixed charges
-    var chargeKeys = ['salaires', 'loyer', 'arnona', 'marketing', 'comptable', 'kashrut'];
-    for (var ci = 0; ci < chargeKeys.length; ci++) {
-      var ck = chargeKeys[ci];
-      var ch = L.charges[ck];
-      h += '<tr><td class="sticky-col">' + tx(ch.label_he, ch.label_fr) + '</td>';
-      var totC = 0;
-      for (var m = 0; m < 24; m++) {
-        var v = ch.monthly[m] || 0;
-        totC += v;
-        h += '<td class="num' + (v === 0 ? ' zero' : '') + '">' + (v ? fmtNum(v) : '\u2014') + '</td>';
-      }
-      h += '<td class="num strong">' + fmtNum(totC) + '</td></tr>';
-    }
-
-    // Investment
-    h += '<tr><td class="sticky-col">' + tx('השקעה (עבודות, ציוד, רכב)', 'Investissement (travaux, equip., vehicule)') + '</td>';
-    var totInv = 0;
-    for (var m = 0; m < 24; m++) {
-      var v = c.investSchedule[m];
-      totInv += v;
-      h += '<td class="num' + (v === 0 ? ' zero' : '') + '">' + (v ? fmtNum(v) : '\u2014') + '</td>';
-    }
-    h += '<td class="num strong">' + fmtNum(totInv) + '</td></tr>';
-
-    // Pret
-    h += '<tr><td class="sticky-col">' + tx('החזר הלוואה', 'Mensualite pret') + '</td>';
-    var totPret = 0;
-    for (var m = 0; m < 24; m++) {
-      var v = c.monthlyPret[m];
-      totPret += v;
-      h += '<td class="num' + (v === 0 ? ' zero' : '') + '">' + (v ? fmtNum(Math.round(v)) : '\u2014') + '</td>';
-    }
-    h += '<td class="num strong">' + fmtNum(Math.round(totPret)) + '</td></tr>';
-
-    // Total decaissements
-    h += '<tr class="total-row neg"><td class="sticky-col">' + tx('סה״כ הוצאות', 'Total decaissements') + '</td>';
-    var totDec = 0;
-    for (var m = 0; m < 24; m++) {
-      var v = c.monthlyChargesTotal[m] + c.investSchedule[m];
-      totDec += v;
-      h += '<td class="num">' + fmtNum(Math.round(v)) + '</td>';
-    }
-    h += '<td class="num strong">' + fmtNum(Math.round(totDec)) + '</td></tr>';
-
-    // SOLDE
-    h += '<tr class="solde-row"><td class="sticky-col">' + tx('יתרה חודשית', 'Solde mensuel') + '</td>';
-    for (var m = 0; m < 24; m++) {
-      var v = c.monthlySolde[m];
-      var cls = v < 0 ? 'num neg' : 'num pos';
-      h += '<td class="' + cls + '">' + (v >= 0 ? fmtNum(Math.round(v)) : '\u2212' + fmtNum(Math.round(-v))) + '</td>';
-    }
-    var totS = 0; for (var m = 0; m < 24; m++) totS += c.monthlySolde[m];
-    h += '<td class="num strong ' + (totS < 0 ? 'neg' : 'pos') + '">' + (totS >= 0 ? fmtNum(Math.round(totS)) : '\u2212' + fmtNum(Math.round(-totS))) + '</td></tr>';
-
-    // CUMUL
-    h += '<tr class="cumul-row"><td class="sticky-col">' + tx('תזרים מצטבר', 'Tresorerie cumulee') + '</td>';
-    for (var m = 0; m < 24; m++) {
-      var v = c.cumulTreasury[m];
-      var cls = v < 0 ? 'num neg strong' : 'num strong';
-      h += '<td class="' + cls + '">' + (v >= 0 ? fmtNum(v) : '\u2212' + fmtNum(-v)) + '</td>';
-    }
-    h += '<td class="num strong">\u2014</td></tr>';
-
-    h += '</tbody></table></div>';
-    root.innerHTML = h;
-  }
-
-  /* ---------- CHART ---------- */
-  function drawChart() {
-    var svg = el('cashflow-chart');
-    if (!svg) return;
-    var c = window.LORY.computed;
-    if (!c || !c.cumulTreasury) return;
-
-    var W = 800, H = 380;
-    var M = { t: 30, r: 50, b: 50, l: 70 };
-    var innerW = W - M.l - M.r;
-    var innerH = H - M.t - M.b;
-
-    // Collect values for scaling
-    var allVals = [0];
-    for (var m = 0; m < 24; m++) {
-      allVals.push(c.cumulTreasury[m]);
-      allVals.push(c.monthlyRevenue[m]);
-    }
-    var yMin = Math.min.apply(null, allVals);
-    var yMax = Math.max.apply(null, allVals);
-    var yRange = yMax - yMin || 1;
-    var yPad = yRange * 0.1;
-    var y0 = yMin - yPad;
-    var y1 = yMax + yPad;
-
-    function xScale(i) { return M.l + (i / 23) * innerW; }
-    function yScale(v) { return M.t + innerH - ((v - y0) / (y1 - y0)) * innerH; }
-
-    // Grid lines
-    var ticks = 5;
-    var gridLines = '';
-    var yLabels = '';
-    for (var i = 0; i <= ticks; i++) {
-      var v = y0 + (y1 - y0) * (i / ticks);
-      var y = yScale(v);
-      gridLines += '<line class="grid" x1="' + M.l + '" y1="' + y + '" x2="' + (W - M.r) + '" y2="' + y + '"/>';
-      yLabels += '<text class="axis-label" x="' + (M.l - 8) + '" y="' + (y + 3) + '" text-anchor="end">' + Math.round(v / 1000) + 'k</text>';
-    }
-
-    // X labels
-    var xLabels = '';
-    for (var i = 0; i < 24; i += 3) {
-      xLabels += '<text class="axis-label" x="' + xScale(i) + '" y="' + (H - M.b + 18) + '" text-anchor="middle">M' + (i + 1) + '</text>';
-    }
-
-    // Zero line
-    var yZero = yScale(0);
-    var zeroLine = (yZero >= M.t && yZero <= H - M.b) ? '<line class="axis" x1="' + M.l + '" y1="' + yZero + '" x2="' + (W - M.r) + '" y2="' + yZero + '" opacity="0.4"/>' : '';
-
-    // Paths
-    var cumulPath = '';
-    var revPath = '';
-    var cumulPoints = '';
-    var revPoints = '';
-    for (var i = 0; i < 24; i++) {
-      var prefix = i === 0 ? 'M' : 'L';
-      cumulPath += prefix + ' ' + xScale(i) + ' ' + yScale(c.cumulTreasury[i]) + ' ';
-      revPath += prefix + ' ' + xScale(i) + ' ' + yScale(c.monthlyRevenue[i]) + ' ';
-      if (i % 3 === 0) {
-        cumulPoints += '<circle class="point" cx="' + xScale(i) + '" cy="' + yScale(c.cumulTreasury[i]) + '" r="3.5" fill="var(--negative)"/>';
-        revPoints += '<circle class="point" cx="' + xScale(i) + '" cy="' + yScale(c.monthlyRevenue[i]) + '" r="3.5" fill="var(--positive)"/>';
-      }
-    }
-
-    svg.innerHTML =
-      gridLines + zeroLine +
-      '<line class="axis" x1="' + M.l + '" y1="' + M.t + '" x2="' + M.l + '" y2="' + (H - M.b) + '"/>' +
-      '<line class="axis" x1="' + M.l + '" y1="' + (H - M.b) + '" x2="' + (W - M.r) + '" y2="' + (H - M.b) + '"/>' +
-      yLabels + xLabels +
-      '<path class="line" d="' + revPath + '" stroke="var(--positive)"/>' +
-      '<path class="line" d="' + cumulPath + '" stroke="var(--negative)"/>' +
-      revPoints + cumulPoints;
-  }
-
-  /* ---------- PDF ---------- */
-  window.exportPDF = function () {
-    window.print();
-  };
-
-  /* ---------- RENDER ALL ---------- */
-  function renderAll() {
-    updateKPIs();
-    renderTable();
-    drawChart();
-  }
-
-  /* ---------- INIT ---------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    renderAll();
-  });
-
-  document.addEventListener('lory-lang', renderAll);
-  document.addEventListener('lorylang', renderAll);
-  document.addEventListener('lory-update', renderAll);
-
-  window.addEventListener('resize', (function () {
-    var timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(drawChart, 200);
-    };
-  })());
-})();
-</script>
 </body>
 </html>
