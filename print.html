@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LORY Events &amp; Catering — תכנית עסקית</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B2A4A;
+      --navy-light: #253a63;
+      --gold: #C9A84C;
+      --gold-light: #e8c97a;
+      --cream: #FAFAF7;
+      --grey-light: #f0f0eb;
+      --grey-mid: #e0ddd5;
+      --text: #1a1a1a;
+      --text-muted: #555;
+    }
+
+    html, body {
+      font-family: 'Heebo', sans-serif;
+      direction: rtl;
+      background: #e8e8e8;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ===================== PRINT BUTTON ===================== */
+    .print-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: var(--navy);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .print-bar-title {
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+    .btn-print {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 10px 28px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .btn-print:hover { background: var(--gold-light); }
+
+    /* ===================== SLIDES WRAPPER ===================== */
+    .slides-wrapper {
+      margin-top: 60px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+    }
+
+    /* ===================== SLIDE BASE ===================== */
+    .slide {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      page-break-after: always;
+    }
+    .slide:last-child { page-break-after: avoid; }
+
+    /* ===================== SLIDE HEADER ===================== */
+    .slide-header {
+      background: var(--navy);
+      color: white;
+      padding: 14px 24px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .slide-header-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .slide-header-meta {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+    .slide-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slide-header-logo img {
+      height: 32px;
+      opacity: 0.9;
+    }
+
+    /* ===================== SLIDE CONTENT ===================== */
+    .slide-content {
+      flex: 1;
+      padding: 20px 28px 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===================== GOLD LINE ===================== */
+    .gold-line {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    /* ===================== TABLES ===================== */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.82rem;
+      margin: 10px 0;
+    }
+    th, td {
+      padding: 6px 10px;
+      border: 1px solid var(--grey-mid);
+      text-align: right;
+    }
+    th {
+      background: var(--navy);
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    tr:nth-child(even) td { background: var(--grey-light); }
+    .td-bold { font-weight: 700; }
+    .td-gold { color: var(--gold); font-weight: 700; }
+    .td-navy { background: var(--navy) !important; color: white; font-weight: 700; }
+    .td-total { background: #eef1f8 !important; font-weight: 700; color: var(--navy); }
+
+    /* ===================== KPIS ===================== */
+    .kpi-row {
+      display: flex;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .kpi-box {
+      flex: 1;
+      background: var(--navy);
+      color: white;
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .kpi-box .kpi-val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+      line-height: 1.1;
+    }
+    .kpi-box .kpi-label {
+      font-size: 0.72rem;
+      opacity: 0.85;
+      margin-top: 4px;
+      display: block;
+      line-height: 1.3;
+    }
+
+    /* ===================== SECTION TITLE ===================== */
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--gold);
+      display: inline-block;
+    }
+
+    /* ===================== SLIDE 1 — COVER ===================== */
+    .cover-slide {
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+    }
+    .cover-slide .slide-content {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 40px 30px;
+    }
+    .cover-logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+    }
+    .cover-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .cover-subtitle {
+      font-size: 1.15rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+    .cover-tagline {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+    .cover-divider {
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 32px;
+      border-radius: 2px;
+    }
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      margin-bottom: 32px;
+    }
+    .cover-grid-item {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: right;
+    }
+    .cover-grid-item .cgi-label {
+      font-size: 0.7rem;
+      opacity: 0.65;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .cover-grid-item .cgi-val {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .cover-grid-item.full-col {
+      grid-column: 1 / -1;
+    }
+    .cover-bottom {
+      font-size: 0.72rem;
+      opacity: 0.5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ===================== SLIDE 2 — PORTEURS ===================== */
+    .porteur-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .porteur-card {
+      background: var(--grey-light);
+      border-radius: 10px;
+      padding: 16px;
+      border-right: 4px solid var(--gold);
+    }
+    .porteur-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .porteur-role {
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .porteur-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .heritage-box {
+      background: var(--navy);
+      color: white;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .heritage-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .heritage-text h3 {
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .heritage-text p {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+
+    /* ===================== SLIDE 3 — CONCEPT ===================== */
+    .revenue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      flex: 1;
+    }
+    .revenue-card {
+      background: var(--grey-light);
+      border-radius: 8px;
+      padding: 14px;
+      border-top: 3px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+    }
+    .rc-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .rc-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .rc-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* ===================== SLIDE 4 — MENU ===================== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .pricing-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--grey-mid);
+    }
+    .pricing-card-header {
+      background: var(--navy);
+      color: white;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .pricing-card-header .pc-tier {
+      font-size: 0.7rem;
+      opacity: 0.65;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .pricing-card-header .pc-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .pricing-card-header .pc-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .pricing-card-body {
+      padding: 12px 14px;
+      background: var(--grey-light);
+    }
+    .pricing-card-body ul {
+      list-style: none;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .pricing-card-body ul li::before {
+      content: "✓ ";
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .pricing-card-body .sub-package {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 8px;
+      margin-bottom: 2px;
+      border-top: 1px solid var(--grey-mid);
+      padding-top: 6px;
+    }
+
+    /* ===================== SLIDE 5 — MARCHE ===================== */
+    .market-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .why-box {
+      background: var(--navy);
+      color: white;
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .why-box h3 {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+    }
+    .why-item .wi-icon {
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .diff-box {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .diff-box h3 {
+      color: var(--navy);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .diff-box p {
+      font-size: 0.82rem;
+      color: var(--navy);
+      line-height: 1.55;
+    }
+    .diff-box .diff-highlight {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* ===================== SLIDE 6 — FINANCEMENT ===================== */
+    .finance-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .finance-col h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .loan-summary {
+      background: var(--grey-light);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .loan-item {
+      text-align: center;
+    }
+    .loan-item .li-val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      display: block;
+    }
+    .loan-item .li-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .loan-separator {
+      width: 1px;
+      height: 40px;
+      background: var(--grey-mid);
+    }
+
+    /* ===================== SLIDE 7 — PREVISIONNEL ===================== */
+    .prev-table th, .prev-table td {
+      font-size: 0.72rem;
+      padding: 5px 7px;
+      text-align: center;
+    }
+    .prev-table th:first-child, .prev-table td:first-child {
+      text-align: right;
+    }
+    .col-year { background: #253a63 !important; }
+    .col-total { background: #1a2d4f !important; }
+    .row-highlight td { background: #eef1f8 !important; font-weight: 600; color: var(--navy); }
+    .row-strong td { background: var(--navy) !important; color: white !important; font-weight: 700; }
+    .note-small {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .note-small strong { color: var(--navy); }
+
+    /* ===================== SLIDE 8 — ANNEXES ===================== */
+    .annexes-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    .annexes-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--grey-mid);
+      font-size: 0.88rem;
+    }
+    .annexes-list li:last-child { border-bottom: none; }
+    .annexes-list li .al-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .al-text strong { display: block; font-weight: 700; color: var(--navy); }
+    .al-text span { font-size: 0.75rem; color: var(--text-muted); }
+    .contact-box {
+      background: var(--navy);
+      color: white;
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .contact-box .cb-left h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .contact-box .cb-left p {
+      font-size: 0.82rem;
+      opacity: 0.85;
+    }
+    .contact-box .cb-right {
+      text-align: left;
+      font-size: 0.78rem;
+      opacity: 0.7;
+      direction: ltr;
+    }
+
+    /* ===================== SLIDE FOOTER ===================== */
+    .slide-footer {
+      background: var(--grey-light);
+      border-top: 1px solid var(--grey-mid);
+      padding: 7px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .slide-footer .sf-brand {
+      font-weight: 700;
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .slide-footer .sf-conf {
+      font-style: italic;
+    }
+    .slide-footer .sf-page {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+
+    /* ===================== PRINT ===================== */
+    @media print {
+      @page { size: A4 portrait; margin: 15mm 20mm; }
+
+      html, body {
+        background: white;
+        font-size: 12px;
+      }
+      .print-bar { display: none !important; }
+      .no-print { display: none !important; }
+      .slides-wrapper {
+        margin-top: 0;
+        padding: 0;
+        gap: 0;
+      }
+      .slide {
+        width: 100%;
+        min-height: 257mm;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+      }
+      .slide:last-child {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      .cover-title { font-size: 1.8rem; }
+      .kpi-box .kpi-val { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRINT BAR -->
+<div class="print-bar no-print">
+  <span class="print-bar-title">LORY Events &amp; Catering — מסמך לבנקאי</span>
+  <button class="btn-print" onclick="window.print()">הורד PDF</button>
+</div>
+
+<div class="slides-wrapper">
+
+  <!-- ==================== SLIDE 1: COVER ==================== -->
+  <section class="slide cover-slide">
+    <div class="slide-content">
+      <img src="img/logo.png" alt="LORY Logo" class="cover-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div style="display:none; font-family:'Montserrat',sans-serif; font-size:2.5rem; font-weight:900; color:var(--gold); margin-bottom:20px; letter-spacing:0.08em;">LORY</div>
+      <div class="cover-title">LORY Events &amp; Catering</div>
+      <div class="cover-subtitle">תכנית עסקית ותחזית פיננסית</div>
+      <div class="cover-tagline">קייטרינג כשר פרימיום — גבעת שאול, ירושלים</div>
+      <div class="cover-divider"></div>
+      <div class="cover-grid">
+        <div class="cover-grid-item">
+          <span class="cgi-label">יזמים</span>
+          <span class="cgi-val">טומי ואדינה בוזנה</span>
+        </div>
+        <div class="cover-grid-item">
+          <span class="cgi-label">מיקום</span>
+          <span class="cgi-val">100 מ״ר, גבעת שאול</span>
+        </div>
+        <div class="cover-grid-item">
+          <span class="cgi-label">פתיחה מתוכננת</span>
+          <span class="cgi-val">אוגוסט 2026</span>
+        </div>
+        <div class="cover-grid-item">
+          <span class="cgi-label">סה״כ השקעה</span>
+          <span class="cgi-val">442,400 ₪</span>
+        </div>
+        <div class="cover-grid-item">
+          <span class="cgi-label">הלוואה מבוקשת</span>
+          <span class="cgi-val">249,400 ₪</span>
+        </div>
+        <div class="cover-grid-item">
+          <span class="cgi-label">הון עצמי</span>
+          <span class="cgi-val">193,000 ₪ (43.6%)</span>
+        </div>
+      </div>
+      <div class="cover-bottom">מאי 2026 &nbsp;·&nbsp; מסמך מסחרי חסוי</div>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 2: PORTEURS ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">היזמים</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+      <div class="porteur-grid">
+        <div class="porteur-card">
+          <div class="porteur-name">טומי בוזנה</div>
+          <div class="porteur-role">שף ראשי · יזם</div>
+          <div class="porteur-desc">
+            שף, בן 27, עם 4 דורות של מורשת קייטרינג כשר במשפחה. אוטודידקט בגסטרונומיה צרפתית עם התמחות ייחודית במטבח תוניסאי-כשר. עלה לישראל ויצר פעילות קייטרינג עצמאית במהלך 3 השנים האחרונות.
+            <br><br>
+            פעיל מדי חג במסגרת "לב טוב" — מבשל <strong>1,500 ארוחות לחיילים</strong> בכל מועד. ניסיון מוכח בהיקפי ייצור גבוהים ובלחץ תפעולי.
+          </div>
+        </div>
+        <div class="porteur-card">
+          <div class="porteur-name">אדינה בוזנה</div>
+          <div class="porteur-role">אדריכלית פנים · ניהול עסקי</div>
+          <div class="porteur-desc">
+            אדריכלית פנים בעלת <strong>עוסק מורשה פעיל 3 שנים</strong>. אחראית על ניהול החנות, קבלת הזמנות, שירות לקוחות ועיצוב חלל העסק.
+            <br><br>
+            מביאה לשולחן שילוב נדיר: ראיית עולם עסקי-מסחרי לצד יכולת ניהול שוטפת ורגישות עיצובית שתשרת את מיתוג LORY.
+          </div>
+        </div>
+      </div>
+      <div class="heritage-box">
+        <div class="heritage-icon">👑</div>
+        <div class="heritage-text">
+          <h3>מורשת המותג — "LORY"</h3>
+          <p>שם המותג הוא מחווה לסבתא לורי — 4 דורות של מורשת קולינרית תוניסאית שעברה מיד ליד, מדור לדור. הקונספט מתרגם מסורת אותנטית לשפה קולינרית עכשווית, מעודנת וכשרה.</p>
+        </div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-box">
+          <span class="kpi-val">4</span>
+          <span class="kpi-label">דורות מורשת קולינרית</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val">3</span>
+          <span class="kpi-label">שנות פעילות קייטרינג</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val">~120</span>
+          <span class="kpi-label">לקוחות פעילים/שבוע כיום</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val">1,500</span>
+          <span class="kpi-label">ארוחות/חג (לב טוב)</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="sf-brand">LORY Events &amp; Catering</span>
+      <span class="sf-conf">מסמך חסוי · מאי 2026</span>
+      <span class="sf-page">2 / 8</span>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 3: CONCEPT ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">הקונספט — 6 צירי הכנסה</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+      <div class="revenue-grid">
+        <div class="revenue-card">
+          <div class="rc-number">01</div>
+          <div class="rc-title">קייטרינג לשבתות חתן</div>
+          <div class="rc-desc">1–3 הזמנות שבועיות כיום. עם פתיחת החנות הפוטנציאל גדל ל-3–5 הזמנות. המוצר הדגל: ארוחות שבת פרימיום לאירועים משפחתיים.</div>
+        </div>
+        <div class="revenue-card">
+          <div class="rc-number">02</div>
+          <div class="rc-title">חנות שבת — 3 רמות מחיר</div>
+          <div class="rc-desc">מכירה קמעונאית בחנות: מוצרים ב-20–70₪ ליחידה, חבילה קלאסית ~200₪, חבילה פרימיום 300–350₪. נגיש לכל רמת הכנסה.</div>
+        </div>
+        <div class="revenue-card">
+          <div class="rc-number">03</div>
+          <div class="rc-title">תפריט צהריים עסקי</div>
+          <div class="rc-desc">משרדי גבעת שאול — ~80 משרדים בטווח 500 מטר. תפריט יומי כשר, גמיש, בר-הזמנה. ביקוש גבוה ללא פתרון כשר קיים.</div>
+        </div>
+        <div class="revenue-card">
+          <div class="rc-number">04</div>
+          <div class="rc-title">חגים — עונת שיא</div>
+          <div class="rc-desc">פסח, ראש השנה, יום כיפור, סוכות — הכפלת נפח ייצור. ניסיון מוכח בהיקפים גדולים. הכנסה מרוכזת בעונות שיא מתוכננות.</div>
+        </div>
+        <div class="revenue-card">
+          <div class="rc-number">05</div>
+          <div class="rc-title">צה״ל · לב טוב</div>
+          <div class="rc-desc">חוזה פעיל: 1,500 ארוחות בכל חג לחיילים. פעילות מוכחת 3+ שנים. מהווה בסיס הכנסה יציב ומאמת יכולת ייצור.</div>
+        </div>
+        <div class="revenue-card">
+          <div class="rc-number">06</div>
+          <div class="rc-title">אירועים — חתונות &amp; שמחות</div>
+          <div class="rc-desc">חתונות, בר מצווה, ברית, ימי הולדת. פרמיום במחיר ובאיכות. הרחבה הדרגתית לפי מוניטין ומוניטין שנצבר.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="sf-brand">LORY Events &amp; Catering</span>
+      <span class="sf-conf">מסמך חסוי · מאי 2026</span>
+      <span class="sf-page">3 / 8</span>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 4: MENU / TARIFS ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">התפריט — שלוש רמות מחיר</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+      <div class="pricing-grid" style="margin-bottom:14px;">
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <div class="pc-tier">רמה 1</div>
+            <div class="pc-title">לואו קוסט</div>
+            <div class="pc-price">20 – 70 ₪ / יחידה</div>
+          </div>
+          <div class="pricing-card-body">
+            <ul>
+              <li>מכירה קמעונאית בחנות</li>
+              <li>סלטים, תבשילים, עוגות</li>
+              <li>נגישות למירב הלקוחות</li>
+              <li>מוצרי בסיס יומיומיים</li>
+              <li>לקוח: אנשים פרטיים, שכנים</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <div class="pc-tier">רמה 2</div>
+            <div class="pc-title">חבילת שבת</div>
+            <div class="pc-price">170 – 295 ₪ / אדם</div>
+          </div>
+          <div class="pricing-card-body">
+            <div class="sub-package">קלאסיק · 170₪/אדם</div>
+            <ul>
+              <li>5 סלטים + דג + בשר</li>
+              <li>2 תוספות + 2 חלות</li>
+            </ul>
+            <div class="sub-package">פרימיום · 295₪/אדם</div>
+            <ul>
+              <li>7 סלטים + דג + בשר</li>
+              <li>2 תוספות + חלות + יין</li>
+              <li>פיצוחים, לחמניות, קינוח</li>
+              <li>כלים חד-פעמיים כלולים</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <div class="pc-tier">רמה 3</div>
+            <div class="pc-title">אירועים</div>
+            <div class="pc-price">80 – 85 ₪ / אדם</div>
+          </div>
+          <div class="pricing-card-body">
+            <ul>
+              <li>8 סלטים + 2 מנות פתיחה</li>
+              <li>בשר ראשי + 2 תוספות</li>
+              <li>לחם + שתיה</li>
+              <li>חתונות, בר מצווה, ברית</li>
+              <li>התאמה אישית מלאה</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:8px;">מיקס הכנסות חודשי — תחזית שנה 2</div>
+      <table>
+        <thead>
+          <tr>
+            <th>מקור הכנסה</th>
+            <th>%</th>
+            <th>סל ממוצע</th>
+            <th>תדירות/חודש</th>
+            <th>מחזור חודשי</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>שבת — חנות + חבילות</td>
+            <td class="td-bold">45%</td>
+            <td>200 ₪</td>
+            <td>~180 × 4 שבתות</td>
+            <td class="td-bold">~145,000 ₪</td>
+          </tr>
+          <tr>
+            <td>שבת חתן</td>
+            <td class="td-bold">20%</td>
+            <td>300 ₪</td>
+            <td>~50 × 4 שבתות</td>
+            <td class="td-bold">~60,000 ₪</td>
+          </tr>
+          <tr>
+            <td>צהריים — משרדים</td>
+            <td class="td-bold">15%</td>
+            <td>65 ₪</td>
+            <td>~700 ארוחות</td>
+            <td class="td-bold">~45,000 ₪</td>
+          </tr>
+          <tr>
+            <td>חגים (ממוצע חודשי)</td>
+            <td class="td-bold">12%</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="td-bold">~36,000 ₪</td>
+          </tr>
+          <tr>
+            <td>אירועים + לב טוב</td>
+            <td class="td-bold">8%</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="td-bold">~24,000 ₪</td>
+          </tr>
+          <tr class="row-strong">
+            <td>סה״כ</td>
+            <td>100%</td>
+            <td colspan="2">—</td>
+            <td>~310,000 ₪</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer">
+      <span class="sf-brand">LORY Events &amp; Catering</span>
+      <span class="sf-conf">מסמך חסוי · מאי 2026</span>
+      <span class="sf-page">4 / 8</span>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 5: MARCHE ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">שוק ומיצוב</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+
+      <div class="section-title" style="margin-bottom:10px;">פרסונות לקוח</div>
+      <table style="margin-bottom:16px;">
+        <thead>
+          <tr>
+            <th>קהל יעד</th>
+            <th>צורך</th>
+            <th>פתרון LORY</th>
+            <th>פוטנציאל</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-bold">משפחות דתיות</td>
+            <td>שבת + חגים כשרים, איכות גבוהה</td>
+            <td>חנות + חבילות שבת 3 רמות</td>
+            <td>גבוה מאוד</td>
+          </tr>
+          <tr>
+            <td class="td-bold">משרדים גבעת שאול</td>
+            <td>ארוחת צהריים כשרה, גמישה, מהירה</td>
+            <td>תפריט עסקי יומי 65₪</td>
+            <td>~80 משרדים</td>
+          </tr>
+          <tr>
+            <td class="td-bold">מארגני שמחות</td>
+            <td>קייטרינג כשר פרימיום לשבת חתן</td>
+            <td>חבילה 170-295₪/אדם</td>
+            <td>3-5/שבוע</td>
+          </tr>
+          <tr>
+            <td class="td-bold">אירועים גדולים</td>
+            <td>חתונה/בר מצווה מלא</td>
+            <td>80-85₪/אדם, התאמה אישית</td>
+            <td>הדרגתי</td>
+          </tr>
+          <tr>
+            <td class="td-bold">מוסדות / צה״ל</td>
+            <td>היקפי ייצור גדולים, כשרות מהודרת</td>
+            <td>חוזה פעיל — לב טוב</td>
+            <td>מוכח</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="market-grid">
+        <div class="diff-box">
+          <h3>מיצוב ייחודי</h3>
+          <span class="diff-highlight">גסטרונומיה תוניסאית-צרפתית כשרה</span>
+          <p style="margin-top:10px;">שילוב נדיר ובלעדי: מסורת קולינרית תוניסאית אותנטית עם טכניקות הכנה צרפתיות — תחת כשרות מהודרת בד״ץ. אין מתחרה ישיר בשוק הירושלמי.</p>
+        </div>
+        <div class="why-box">
+          <h3>למה גבעת שאול?</h3>
+          <div class="why-item">
+            <span class="wi-icon">✓</span>
+            <span>100% חנייה חופשית — יתרון תחרותי עצום</span>
+          </div>
+          <div class="why-item">
+            <span class="wi-icon">✓</span>
+            <span>~80 משרדים בטווח 500 מטר — ביקוש צהריים</span>
+          </div>
+          <div class="why-item">
+            <span class="wi-icon">✓</span>
+            <span>0 מתחרים ישירים קייטרינג כשר פרימיום</span>
+          </div>
+          <div class="why-item">
+            <span class="wi-icon">✓</span>
+            <span>שכונה מבוססת, מרכזית, גישה מכל הכיוונים</span>
+          </div>
+          <div class="why-item">
+            <span class="wi-icon">✓</span>
+            <span>קהילה דתית ודתית-לאומית צומחת</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="sf-brand">LORY Events &amp; Catering</span>
+      <span class="sf-conf">מסמך חסוי · מאי 2026</span>
+      <span class="sf-page">5 / 8</span>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 6: FINANCEMENT ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">תכנית מימון</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+
+      <div class="finance-cols" style="margin-bottom:14px;">
+        <div class="finance-col">
+          <h3>צרכים — שימוש בכספים</h3>
+          <table>
+            <thead>
+              <tr><th>פריט</th><th>סכום</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>עבודות התאמה ובנייה</td><td class="td-bold">178,000 ₪</td></tr>
+              <tr><td>ציוד מטבח מקצועי</td><td class="td-bold">117,900 ₪</td></tr>
+              <tr><td>רכב קירור</td><td class="td-bold">50,000 ₪</td></tr>
+              <tr><td>שירותים, רישיונות, שונות</td><td class="td-bold">96,500 ₪</td></tr>
+              <tr class="row-strong"><td>סה״כ השקעה</td><td>442,400 ₪</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="finance-col">
+          <h3>משאבים — מקורות מימון</h3>
+          <table>
+            <thead>
+              <tr><th>מקור</th><th>סכום</th><th>%</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>הון עצמי</td><td class="td-bold">193,000 ₪</td><td class="td-bold">43.6%</td></tr>
+              <tr><td>הלוואה בנקאית</td><td class="td-bold">249,400 ₪</td><td class="td-bold">56.4%</td></tr>
+              <tr class="row-strong"><td>סה״כ</td><td>442,400 ₪</td><td>100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:8px;">סיכום ההלוואה המבוקשת</div>
+      <div class="loan-summary">
+        <div class="loan-item">
+          <span class="li-val">249,400 ₪</span>
+          <span class="li-label">סכום ההלוואה</span>
+        </div>
+        <div class="loan-separator"></div>
+        <div class="loan-item">
+          <span class="li-val">4,192 ₪</span>
+          <span class="li-label">החזר חודשי</span>
+        </div>
+        <div class="loan-separator"></div>
+        <div class="loan-item">
+          <span class="li-val">6 שנים</span>
+          <span class="li-label">תקופת ההחזר</span>
+        </div>
+        <div class="loan-separator"></div>
+        <div class="loan-item">
+          <span class="li-val">6.5%</span>
+          <span class="li-label">ריבית שנתית</span>
+        </div>
+        <div class="loan-separator"></div>
+        <div class="loan-item">
+          <span class="li-val">52,453 ₪</span>
+          <span class="li-label">עלות אשראי כוללת</span>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:8px;">בטחונות</div>
+      <table>
+        <thead>
+          <tr><th>סוג הבטוחה</th><th>פרטים</th><th>שווי</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ערבות אישית הדדית</td>
+            <td>טומי ואדינה בוזנה — הדדית מלאה</td>
+            <td class="td-bold">הדדי</td>
+          </tr>
+          <tr>
+            <td>ערבות משפחתית</td>
+            <td>ערבות צד שלישי</td>
+            <td class="td-bold">150,000 ₪</td>
+          </tr>
+          <tr>
+            <td>שעבוד ציוד מטבח</td>
+            <td>ציוד מקצועי חדש</td>
+            <td class="td-bold">117,000 ₪</td>
+          </tr>
+          <tr class="row-strong">
+            <td>סה״כ בטחונות</td>
+            <td>—</td>
+            <td>267,000 ₪</td>
+          </tr>
+          <tr class="row-highlight">
+            <td class="td-bold">יחס בטחונות / הלוואה</td>
+            <td colspan="2" class="td-gold" style="font-size:1rem;">107% — כיסוי מלא</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer">
+      <span class="sf-brand">LORY Events &amp; Catering</span>
+      <span class="sf-conf">מסמך חסוי · מאי 2026</span>
+      <span class="sf-page">6 / 8</span>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 7: PREVISIONNEL ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">תחזית פיננסית — 24 חודשים</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+
+      <div class="kpi-row" style="margin-bottom:14px;">
+        <div class="kpi-box">
+          <span class="kpi-val">828,000 ₪</span>
+          <span class="kpi-label">מחזור שנה 1</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val">2,410,000 ₪</span>
+          <span class="kpi-label">מחזור שנה 2</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val">964,000 ₪</span>
+          <span class="kpi-label">רווח תפעולי שנה 2</span>
+        </div>
+        <div class="kpi-box">
+          <span class="kpi-val">270,489 ₪</span>
+          <span class="kpi-label">תזרים מצטבר — סוף חודש 24</span>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:8px;">סיכום רבעוני</div>
+      <table class="prev-table">
+        <thead>
+          <tr>
+            <th>שורה</th>
+            <th>Q1<br><small>M1-3</small></th>
+            <th>Q2<br><small>M4-6</small></th>
+            <th>Q3<br><small>M7-9</small></th>
+            <th>Q4<br><small>M10-12</small></th>
+            <th class="col-year">שנה 1</th>
+            <th>Q5<br><small>M13-15</small></th>
+            <th>Q6<br><small>M16-18</small></th>
+            <th>Q7<br><small>M19-21</small></th>
+            <th>Q8<br><small>M22-24</small></th>
+            <th class="col-year">שנה 2</th>
+            <th class="col-total">סה״כ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td class="td-bold">מחזור (₪)</td>
+            <td>0</td>
+            <td>81,000</td>
+            <td>252,000</td>
+            <td>495,000</td>
+            <td class="col-year td-bold" style="color:#fff;">828,000</td>
+            <td>527,000</td>
+            <td>583,000</td>
+            <td>577,000</td>
+            <td>723,000</td>
+            <td class="col-year td-bold" style="color:#fff;">2,410,000</td>
+            <td class="col-total td-bold" style="color:#fff;">3,238,000</td>
+          </tr>
+          <tr>
+            <td>חומרי גלם (30%)</td>
+            <td>0</td>
+            <td>24,300</td>
+            <td>75,600</td>
+            <td>148,500</td>
+            <td class="col-year" style="color:#fff;">248,400</td>
+            <td>158,100</td>
+            <td>174,900</td>
+            <td>173,100</td>
+            <td>216,900</td>
+            <td class="col-year" style="color:#fff;">723,000</td>
+            <td class="col-total" style="color:#fff;">971,400</td>
+          </tr>
+          <tr>
+            <td>שכר (עד 38k/ח)</td>
+            <td>48,000</td>
+            <td>75,000</td>
+            <td>102,000</td>
+            <td>114,000</td>
+            <td class="col-year" style="color:#fff;">339,000</td>
+            <td>114,000</td>
+            <td>114,000</td>
+            <td>114,000</td>
+            <td>114,000</td>
+            <td class="col-year" style="color:#fff;">456,000</td>
+            <td class="col-total" style="color:#fff;">795,000</td>
+          </tr>
+          <tr>
+            <td>שכירות (15k/ח)</td>
+            <td>0</td>
+            <td>45,000</td>
+            <td>45,000</td>
+            <td>45,000</td>
+            <td class="col-year" style="color:#fff;">135,000</td>
+            <td>45,000</td>
+            <td>45,000</td>
+            <td>45,000</td>
+            <td>45,000</td>
+            <td class="col-year" style="color:#fff;">180,000</td>
+            <td class="col-total" style="color:#fff;">315,000</td>
+          </tr>
+          <tr class="row-strong">
+            <td>רווח תפעולי</td>
+            <td style="color:#f8d77a;">-48,000</td>
+            <td style="color:#f8d77a;">-63,300</td>
+            <td style="color:#f8d77a;">29,400</td>
+            <td style="color:#f8d77a;">187,500</td>
+            <td class="col-year">105,600</td>
+            <td style="color:#f8d77a;">209,900</td>
+            <td style="color:#f8d77a;">249,100</td>
+            <td style="color:#f8d77a;">244,900</td>
+            <td style="color:#f8d77a;">347,100</td>
+            <td class="col-year">1,051,000</td>
+            <td class="col-total">1,156,600</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note-small" style="margin-top:10px;">
+        <strong>מתודולוגיה:</strong>
+        חומרי גלם: 30% מהמחזור &nbsp;·&nbsp;
+        שכר: הדרגתי עד 38,000₪/חודש (שנה 2) &nbsp;·&nbsp;
+        שכירות: 15,000₪/חודש (החל M4 עם פתיחה) &nbsp;·&nbsp;
+        מע״מ: 18% &nbsp;·&nbsp;
+        Q1 = הכנה ובנייה, אין הכנסות עסקיות &nbsp;·&nbsp;
+        Q3 = פתיחה אוגוסט 2026 + עונת חגי תשרי
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="sf-brand">LORY Events &amp; Catering</span>
+      <span class="sf-conf">מסמך חסוי · מאי 2026</span>
+      <span class="sf-page">7 / 8</span>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 8: ANNEXES ==================== -->
+  <section class="slide">
+    <div class="slide-header">
+      <span class="slide-header-title">נספחים ומסמכים</span>
+      <div class="slide-header-logo">
+        <img src="img/logo.png" alt="LORY" onerror="this.style.display='none';">
+        <span class="slide-header-meta">LORY Events &amp; Catering</span>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="gold-line"></div>
+
+      <div class="section-title" style="margin-bottom:10px;">תיק מסמכים מצורף</div>
+      <ul class="annexes-list">
+        <li>
+          <div class="al-icon">🗺</div>
+          <div class="al-text">
+            <strong>תכנית סביבה וחלקה</strong>
+            <span>קנ״מ 1:500 / 1:1250 — מיקום הנכס בתוך הסביבה העירונית</span>
+          </div>
+        </li>
+        <li>
+          <div class="al-icon">🍳</div>
+          <div class="al-text">
+            <strong>תכנית מטבח והעמדת ציוד</strong>
+            <span>קנ״מ 1:50 — פריסה מלאה של מטבח מקצועי 100 מ״ר</span>
+          </div>
+        </li>
+        <li>
+          <div class="al-icon">🚿</div>
+          <div class="al-text">
+            <strong>תכנית סניטרית</strong>
+            <span>קנ״מ 1:50 — מערכות אינסטלציה, ביוב, כיורים תקניים</span>
+          </div>
+        </li>
+        <li>
+          <div class="al-icon">📐</div>
+          <div class="al-text">
+            <strong>חתכים A-A ו-B-B</strong>
+            <span>קנ״מ 1:50 — חתכים אנכיים ורוחביים של המבנה</span>
+          </div>
+        </li>
+        <li>
+          <div class="al-icon">📊</div>
+          <div class="al-text">
+            <strong>חשבונאות 3 שנים (2023–2025)</strong>
+            <span>דוחות כספיים — פעילות עסקית קיימת לאימות ניסיון</span>
+          </div>
+        </li>
+        <li>
+          <div class="al-icon">✡</div>
+          <div class="al-text">
+            <strong>השגחת כשרות — בד״ץ יורה דעה</strong>
+            <span>הרב שלמה מחפוד שליט״א — כשרות מהודרת, אמינות מוכחת</span>
+          </div>
+        </li>
+      </ul>
+
+      <div style="flex: 1;"></div>
+
+      <div class="contact-box">
+        <div class="cb-left">
+          <h3>LORY Events &amp; Catering</h3>
+          <p>טומי ואדינה בוזנה (בוזנה)</p>
+          <p style="margin-top:4px;">גבעת שאול, ירושלים · פתיחה אוגוסט 2026</p>
+        </div>
+        <div class="cb-right">
+          <div>מאי 2026</div>
+          <div style="margin-top:4px;">מסמך חסוי</div>
+          <div style="margin-top:4px; color: var(--gold); font-weight:600;">8 / 8</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:14px; font-size:0.7rem; color:var(--text-muted); font-style:italic;">
+        LORY Events &amp; Catering · מאי 2026 · מסמך מסחרי חסוי — לא להפצה
+      </div>
+    </div>
+  </section>
+
+</div><!-- end slides-wrapper -->
+</body>
+</html>
